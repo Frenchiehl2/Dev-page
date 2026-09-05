@@ -1,0 +1,111 @@
+/* Same panel treatment as a card, so the foot of the page matches the grids. */
+
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: var(--measure);
+  margin-top: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  justify-self: center;
+}
+
+.intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.address {
+  color: var(--accent);
+  font-weight: 500;
+  /* Selectable by hand when the clipboard write is unavailable or refused. */
+  user-select: all;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.field input,
+.field textarea {
+  padding: var(--space-sm);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font: inherit;
+  /* Only vertically: a wider box would break out of the panel. */
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.button {
+  padding: var(--space-sm) var(--space-md);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  /* Fixed rather than a token: --accent is the fill in both themes. */
+  color: #fff;
+}
+
+.button--primary:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.status {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

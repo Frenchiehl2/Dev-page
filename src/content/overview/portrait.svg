@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#33506e"/>
+      <stop offset="1" stop-color="#4a7396"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#pbg)"/>
+  <g fill="#ffffff" fill-opacity="0.82">
+    <circle cx="200" cy="158" r="66"/>
+    <path d="M200 246c-72 0-122 47-130 106h260c-8-59-58-106-130-106z"/>
+  </g>
+  <text x="200" y="378" text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+        font-size="20" font-weight="500" fill="#ffffff" fill-opacity="0.6">Portrait placeholder</text>
+</svg>

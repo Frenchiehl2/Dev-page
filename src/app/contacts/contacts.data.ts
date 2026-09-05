@@ -1,0 +1,25 @@
+/** A platform shown in the Find me online section. */
+export interface ContactPlatform {
+  name: string;
+  /** Full profile URL, opened in a new tab. */
+  url: string;
+  /**
+   * Path to the logo, relative to the site base href (files live in public/).
+   * These start as neutral initial-tiles: drop a real logo over the file in
+   * public/logos/ and it appears here with no code change.
+   */
+  logo: string;
+}
+
+/**
+ * Add a platform by adding an entry here and an SVG (or PNG) at the matching
+ * path under public/logos/. The grid wraps to new rows on its own.
+ *
+ * NOTE: every url below is a PLACEHOLDER. Replace 'your-handle' (and the
+ * Discord user id) with the real profiles before publishing.
+ */
+export const CONTACT_PLATFORMS: ContactPlatform[] = [
+  { name: 'GitHub', url: 'https://github.com/Frenchiehl2', logo: 'logos/github.svg' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@Frenchie-f1c', logo: 'logos/youtube.svg' },
+  { name: 'Discord', url: 'https://discord.com/users/your-user-id', logo: 'logos/discord.svg' },
+];

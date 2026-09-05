@@ -1,0 +1,36 @@
+import { Component, computed, inject } from '@angular/core';
+import { Reveal } from '../shared/reveal';
+import { Language } from '../shared/language';
+import { UI_TEXT } from '../shared/ui-text';
+import { PORTRAIT } from '../overview/overview.data';
+import { Overview } from '../overview/overview';
+import { Skills } from '../skills/skills';
+import { CommercialReleases } from '../commercial-releases/commercial-releases';
+import { Projects } from '../projects/projects';
+import { Experience } from '../experience/experience';
+import { Education } from '../education/education';
+import { Contact } from '../contact/contact';
+import { Contacts } from '../contacts/contacts';
+
+@Component({
+  imports: [
+    Overview,
+    Skills,
+    CommercialReleases,
+    Projects,
+    Experience,
+    Education,
+    Contact,
+    Contacts,
+    Reveal,
+  ],
+  selector: 'app-home',
+  styleUrl: './home.css',
+  templateUrl: './home.html',
+})
+export class Home {
+  private readonly language = inject(Language);
+
+  protected readonly t = computed(() => UI_TEXT[this.language.current()]);
+  protected readonly portrait = PORTRAIT;
+}

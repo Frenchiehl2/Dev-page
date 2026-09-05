@@ -1,0 +1,51 @@
+<!--
+  Icon only: the label lives in aria-label/title, the arrow is decorative.
+  Defined once here and rendered into whichever branch below applies.
+-->
+<ng-template #backLink>
+  <a
+    class="back"
+    routerLink="/"
+    [attr.aria-label]="t().backToProfile"
+    [attr.title]="t().backToProfile"
+  >
+    <svg
+      class="back-arrow"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
+  </a>
+</ng-template>
+
+@if (project(); as project) {
+  <ng-container [ngTemplateOutlet]="backLink" />
+  <article class="detail">
+    <!-- alt="" : decorative, the title follows immediately below. -->
+    <img class="hero" [src]="project.banner" alt="" width="650" height="450" appReveal />
+
+    <header class="detail-head" [appReveal]="1">
+      <h1>{{ project.title }}</h1>
+      <p class="meta">{{ project.role }} &middot; {{ project.year }}</p>
+      <ul class="tags" [attr.aria-label]="t().technologiesUsed">
+        @for (tag of project.tags; track tag) {
+          <li>{{ tag }}</li>
+        }
+      </ul>
+    </header>
+
+    <div class="markdown-body" [appReveal]="2" [innerHTML]="project.body | markdown"></div>
+  </article>
+} @else {
+  <ng-container [ngTemplateOutlet]="backLink" />
+  <div class="missing">
+    <h1>{{ t().projectNotFound }}</h1>
+    <p>{{ t().noProjectMatching(slug()) }}</p>
+  </div>
+}

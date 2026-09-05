@@ -1,0 +1,28 @@
+<section class="contacts" aria-labelledby="contacts-heading">
+  <h2 id="contacts-heading" appReveal>{{ t().findMeOnline }}</h2>
+
+  <ul class="grid">
+    @for (platform of platforms; track platform.name) {
+      <!--
+        The reveal sits on this cell, not the tile: the tile owns a `transition`
+        for its hover state, and a component-scoped rule outranks the global
+        .reveal one, which would otherwise clobber the fade.
+      -->
+      <li class="cell" [appReveal]="$index + 1">
+        <a class="tile" [href]="platform.url" target="_blank" rel="noopener noreferrer">
+          <!-- alt="" : the logo is decorative, the name is right beside it. -->
+          <img
+            class="logo"
+            [src]="platform.logo"
+            alt=""
+            width="48"
+            height="48"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="name">{{ platform.name }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

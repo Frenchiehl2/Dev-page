@@ -1,0 +1,105 @@
+/* Wider crop than the card uses, from the same source image. */
+.hero {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-lg);
+}
+
+.detail-head {
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-head h1,
+.missing h1 {
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  margin-top: var(--space-xs);
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.15rem 0.5rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/*
+ * Markdown body typography lives in src/styles.css, not here: content bound
+ * with [innerHTML] never receives Angular's style-scoping attribute, so a
+ * scoped rule written in this file could not reach it.
+ */
+
+.missing p {
+  margin-top: var(--space-sm);
+  color: var(--text-muted);
+}
+
+/*
+ * Icon-only control at the top left of the column. Sized to the 44px touch
+ * target minimum, with the same surface/border chrome as the language
+ * selector's track so the two corners of the page read as one system.
+ */
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--space-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--accent);
+  text-decoration: none;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    stroke 200ms ease,
+    color 200ms ease;
+}
+
+/* stroke="currentColor" in the markup, so the icon follows .back's color. */
+.back-arrow {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.back:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back {
+    transition: none;
+  }
+}

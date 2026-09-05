@@ -1,0 +1,13 @@
+<section class="skills" aria-labelledby="skills-heading">
+  <h2 id="skills-heading" appReveal>{{ t().skills }}</h2>
+
+  <ul class="grid">
+    @for (skill of skills; track skill.name) {
+      <li class="tile" [appReveal]="$index + 1">
+        <!-- alt="" : the logo is decorative, the name is right beside it. -->
+        <img class="logo" [src]="skill.logo" alt="" width="48" height="48" />
+        <span class="name">{{ skill.name }}</span>
+      </li>
+    }
+  </ul>
+</section>

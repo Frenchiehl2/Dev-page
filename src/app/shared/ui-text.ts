@@ -1,0 +1,95 @@
+import { Lang } from './language';
+
+/**
+ * Interface strings that are not part of the Markdown content.
+ *
+ * Article text lives in src/content/**; this covers only the chrome around it.
+ */
+export interface UiText {
+  role: string;
+  tagline: string;
+  overview: string;
+  skills: string;
+  commercialReleases: string;
+  projects: string;
+  experience: string;
+  education: string;
+  contact: string;
+  contactIntro: string;
+  subjectLabel: string;
+  messageLabel: string;
+  sendMessage: string;
+  copyEmail: string;
+  emailCopied: string;
+  findMeOnline: string;
+  location: string;
+  focus: string;
+  email: string;
+  viewProject: string;
+  viewRelease: string;
+  technologiesUsed: string;
+  backToProfile: string;
+  projectNotFound: string;
+  noProjectMatching: (slug: string) => string;
+  languageToggle: string;
+}
+
+export const UI_TEXT: Record<Lang, UiText> = {
+  en: {
+    role: 'Full-Stack Developer',
+    tagline: 'Building maintainable web applications in TypeScript, mostly with Angular.',
+    overview: 'Overview',
+    skills: 'Skills',
+    commercialReleases: 'Commercial Releases',
+    projects: 'Projects',
+    experience: 'Practical Experience',
+    education: 'Education',
+    contact: 'Contact',
+    contactIntro: 'Write a message below and press send — it opens in your own mail app, addressed to me.',
+    subjectLabel: 'Subject',
+    messageLabel: 'Message',
+    sendMessage: 'Send message',
+    copyEmail: 'Copy email',
+    emailCopied: 'Copied',
+    findMeOnline: 'Find me online',
+    location: 'Location',
+    focus: 'Focus',
+    email: 'Email',
+    viewProject: 'View project →',
+    viewRelease: 'View release →',
+    technologiesUsed: 'Technologies used',
+    backToProfile: 'Back to profile',
+    projectNotFound: 'Project not found',
+    noProjectMatching: (slug) => `There is no project matching “${slug}”.`,
+    languageToggle: 'Language: English. Switch to German.',
+  },
+  de: {
+    role: 'Full-Stack-Entwickler',
+    tagline: 'Wartbare Webanwendungen in TypeScript, meist mit Angular.',
+    overview: 'Überblick',
+    skills: 'Fähigkeiten',
+    commercialReleases: 'Kommerzielle Veröffentlichungen',
+    projects: 'Projekte',
+    experience: 'Praktische Erfahrung',
+    education: 'Ausbildung',
+    contact: 'Kontakt',
+    contactIntro:
+      'Schreiben Sie unten eine Nachricht und klicken Sie auf Senden — sie öffnet sich in Ihrem eigenen E-Mail-Programm, an mich adressiert.',
+    subjectLabel: 'Betreff',
+    messageLabel: 'Nachricht',
+    sendMessage: 'Nachricht senden',
+    copyEmail: 'E-Mail kopieren',
+    emailCopied: 'Kopiert',
+    findMeOnline: 'Online finden',
+    location: 'Standort',
+    focus: 'Schwerpunkt',
+    email: 'E-Mail',
+    viewProject: 'Projekt ansehen →',
+    viewRelease: 'Release ansehen →',
+    technologiesUsed: 'Verwendete Technologien',
+    backToProfile: 'Zurück zum Profil',
+    projectNotFound: 'Projekt nicht gefunden',
+    noProjectMatching: (slug) => `Es gibt kein Projekt mit dem Namen „${slug}“.`,
+    languageToggle: 'Sprache: Deutsch. Zu Englisch wechseln.',
+  },
+};

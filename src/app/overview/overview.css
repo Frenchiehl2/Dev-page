@@ -1,0 +1,36 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.overview p {
+  max-width: var(--measure);
+  color: var(--text-muted);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  margin: var(--space-xs) 0 0;
+  padding: var(--space-md) 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.fact dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.fact dd {
+  margin: var(--space-xs) 0 0;
+  font-weight: 500;
+}

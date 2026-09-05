@@ -1,0 +1,342 @@
+/* Global baseline: reset, design tokens, typography. */
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --border: #e3e3df;
+  --text: #1c1c1a;
+  --text-muted: #62625c;
+  --accent: #3d5a80;
+  --tag-bg: #eceef2;
+  --tag-text: #3d5a80;
+
+  --space-xs: 0.35rem;
+  --space-sm: 0.6rem;
+  --space-md: 1rem;
+  --space-lg: 1.75rem;
+  --space-xl: 3rem;
+
+  --radius: 10px;
+  --measure: 68ch;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16171a;
+    --surface: #1e2024;
+    --border: #2f323a;
+    --text: #e8e8e6;
+    --text-muted: #a0a29c;
+    --accent: #8ab0d9;
+    --tag-bg: #262b33;
+    --tag-text: #a8c4e3;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+/*
+ * Section headings. Global rather than in app.css: Angular scopes component
+ * styles to that component's own template, so a rule written there cannot
+ * reach an <h2> that lives inside a child component.
+ */
+section > h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+}
+
+/*
+ * Scroll reveal, driven by the appReveal directive. Global because the
+ * directive is shared across components and adds these classes itself.
+ *
+ * The hidden state lives here but is only ever applied by the directive, so
+ * content is never hidden unless the script is running to reveal it again.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-offset, 12px));
+  transition:
+    opacity 250ms ease-out,
+    transform 250ms ease-out;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * Lets the directive reposition an element without animating the reposition
+ * itself. Declared after .reveal so it wins on equal specificity.
+ */
+.reveal--no-transition {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/*
+ * Work card grid, used by both the Commercial Releases and Projects sections.
+ * Global rather than in either component: Angular scopes component styles to
+ * that component's own template, so one section cannot style the other's card.
+ * Everything is nested under .card-grid so these names stay out of the way of
+ * the scoped .grid in skills.css and the scoped .tags in project-detail.css.
+ *
+ * Responsive: as many 260px-minimum columns as fit, wrapping to new rows as
+ * entries are added. auto-fit rather than auto-fill so empty column tracks
+ * collapse — with one or two entries the cards fill the row instead of sitting
+ * narrow beside reserved empty space.
+ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* Grid cell wrapping each card; carries the scroll reveal (see the templates). */
+.card-grid .cell {
+  display: flex;
+}
+
+/* The whole card is one link, styled to read and press like a button. */
+.card-grid .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* No padding: the banner is full-bleed, so the padding moves to .card-body.
+     overflow:hidden clips the image to the rounded corners. */
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 90ms ease,
+    border-color 90ms ease,
+    box-shadow 90ms ease;
+}
+
+.card-grid .card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+}
+
+.card-grid .card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.card-grid .card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.card-grid .banner {
+  display: block;
+  width: 100%;
+  /* A header strip rather than a picture: keeps the card close to the height
+     it had before the banner, so the summary and tags stay the focus. */
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  /* Sits under the 1px border rather than over it. */
+  border-bottom: 1px solid var(--border);
+}
+
+/* Carries the padding and the flex column the card used to own, so
+   `.tags { margin-top: auto }` still pushes the tags to the bottom. */
+.card-grid .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.card-grid .card h3 {
+  font-size: 1.05rem;
+}
+
+.card-grid .card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.card-grid .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.card-grid .tags li {
+  padding: 0.15rem 0.5rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.card-grid .more {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.card-grid .card:hover .more {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-grid .card {
+    transition: none;
+  }
+
+  .card-grid .card:hover {
+    transform: none;
+  }
+}
+
+/*
+ * Rendered Markdown. Must be global: content bound with [innerHTML] is added
+ * to the DOM without Angular's style-scoping attribute, so scoped component
+ * styles cannot reach these elements.
+ */
+.markdown-body {
+  margin-top: var(--space-xl);
+  max-width: var(--measure);
+  color: var(--text-muted);
+}
+
+.markdown-body h2 {
+  margin-top: var(--space-xl);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.markdown-body h3 {
+  margin-top: var(--space-lg);
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: var(--space-md);
+}
+
+.markdown-body li + li {
+  margin-top: var(--space-xs);
+}
+
+.markdown-body strong {
+  color: var(--text);
+}
+
+.markdown-body code {
+  padding: 0.1rem 0.35rem;
+  background: var(--tag-bg);
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.markdown-body pre {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background: none;
+}
+
+/*
+ * Compact variant used inside timeline/education entries, replacing the
+ * scoped .role ul and .detail rules those components can no longer apply to
+ * their own Markdown-rendered content.
+ */
+.markdown-body--tight {
+  margin-top: var(--space-sm);
+  font-size: 0.95rem;
+}
+
+.markdown-body--tight p,
+.markdown-body--tight ul,
+.markdown-body--tight ol {
+  margin-top: var(--space-sm);
+}
+
+.markdown-body blockquote {
+  margin: var(--space-md) 0 0;
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--border);
+  font-style: italic;
+}
+
+/*
+ * Overview intro: its first paragraph is the lede. Global because the content
+ * is injected with [innerHTML] and never carries a component scope attribute.
+ */
+.markdown-body--lede > p:first-child {
+  font-size: 1.1rem;
+  color: var(--text);
+}

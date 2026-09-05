@@ -1,0 +1,20 @@
+<section class="overview" aria-labelledby="overview-heading" appReveal>
+  <h2 id="overview-heading">{{ t().overview }}</h2>
+
+  <div class="markdown-body markdown-body--lede" [innerHTML]="overview().body | markdown"></div>
+
+  <dl class="facts">
+    <div class="fact">
+      <dt>{{ t().location }}</dt>
+      <dd>{{ overview().location }}</dd>
+    </div>
+    <div class="fact">
+      <dt>{{ t().focus }}</dt>
+      <dd>{{ overview().focus }}</dd>
+    </div>
+    <div class="fact">
+      <dt>{{ t().email }}</dt>
+      <dd>{{ overview().email }}</dd>
+    </div>
+  </dl>
+</section>

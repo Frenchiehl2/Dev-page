@@ -1,0 +1,74 @@
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* min-width:0 lets the text shrink instead of forcing the row wider. */
+.intro {
+  flex: 1;
+  min-width: 0;
+}
+
+.portrait {
+  flex: none;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 600px) {
+  .masthead {
+    gap: var(--space-md);
+  }
+
+  .portrait {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.masthead h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+.role {
+  margin-top: var(--space-xs);
+  color: var(--accent);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.tagline {
+  margin-top: var(--space-sm);
+  max-width: var(--measure);
+  color: var(--text-muted);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  /* The gap falls on both sides of each divider, so it is one step down from
+     the masthead's spacing to keep the rhythm the page had without lines. */
+  gap: var(--space-lg);
+  padding-top: var(--space-xl);
+}
+
+/*
+ * Section separator. Matches the masthead's border-bottom, so every rule on
+ * the page is the same weight and colour, and follows --border into dark mode.
+ * The border/margin reset clears the UA's inset groove and its own margins,
+ * which would otherwise stack on top of the flex gap.
+ */
+.divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}

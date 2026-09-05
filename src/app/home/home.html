@@ -1,0 +1,28 @@
+<header class="masthead" appReveal>
+  <div class="intro">
+    <h1>Aleksa Lukic</h1>
+    <p class="role">{{ t().role }}</p>
+    <p class="tagline">{{ t().tagline }}</p>
+  </div>
+
+  <!-- alt="" : decorative, the name sits directly beside it. -->
+  <img class="portrait" [src]="portrait" alt="" width="400" height="400" />
+</header>
+
+<main>
+  <app-overview />
+  <hr class="divider" appReveal />
+  <app-skills />
+  <hr class="divider" appReveal />
+  <app-commercial-releases />
+  <hr class="divider" appReveal />
+  <app-projects />
+  <hr class="divider" appReveal />
+  <app-experience />
+  <hr class="divider" appReveal />
+  <app-education />
+  <hr class="divider" appReveal />
+  <app-contact />
+  <hr class="divider" appReveal />
+  <app-contacts />
+</main>

@@ -1,0 +1,82 @@
+/*
+ * Same cells and tile treatment as the Skills grid, kept scoped rather than
+ * shared: a skill tile is static, these are links, so only the box itself
+ * overlaps and the interactive states below are all extra.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+  place-items: center;
+}
+
+/* Grid cell wrapping each tile; carries the scroll reveal (see contacts.html). */
+.cell {
+  display: flex;
+  max-width: 35%;
+  min-width: 35%;
+}
+
+.tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.tile:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+}
+
+.tile:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.tile:hover .name {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+}

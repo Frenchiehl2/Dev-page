@@ -1,0 +1,39 @@
+<!-- Card styling is global (.card-grid in src/styles.css): this section and
+     Commercial Releases render the same card, and component styles cannot be shared. -->
+<section class="projects" aria-labelledby="projects-heading">
+  <h2 id="projects-heading" appReveal>{{ t().projects }}</h2>
+
+  <div class="card-grid">
+    @for (project of projects(); track project.slug) {
+      <!--
+        The reveal sits on this cell, not the card: the card owns a `transition`
+        for its hover state, and a component-scoped rule outranks the global
+        .reveal one, which would otherwise clobber the fade.
+      -->
+      <div class="cell" [appReveal]="$index + 1">
+        <a class="card" [routerLink]="['/projects', project.slug]">
+          <!-- alt="" : decorative, the title sits directly beneath it. -->
+          <img
+            class="banner"
+            [src]="project.banner"
+            alt=""
+            width="200"
+            height="200"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="card-body">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.summary }}</p>
+            <ul class="tags" [attr.aria-label]="t().technologiesUsed">
+              @for (tag of project.tags; track tag) {
+                <li>{{ tag }}</li>
+              }
+            </ul>
+            <span class="more" aria-hidden="true">{{ t().viewProject }}</span>
+          </span>
+        </a>
+      </div>
+    }
+  </div>
+</section>

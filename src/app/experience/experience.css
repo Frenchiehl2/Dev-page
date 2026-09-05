@@ -1,0 +1,44 @@
+.timeline {
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.role {
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--border);
+}
+
+.role-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+}
+
+.role-head h3 {
+  font-size: 1.05rem;
+}
+
+.dates {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.org {
+  margin-top: var(--space-xs);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/*
+ * The bullet list is Markdown rendered via [innerHTML], so it cannot be styled
+ * from here — scoped rules never reach injected content. Its typography lives
+ * in src/styles.css under .markdown-body--tight.
+ */

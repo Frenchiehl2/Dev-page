@@ -1,0 +1,16 @@
+<section class="experience" aria-labelledby="experience-heading">
+  <h2 id="experience-heading" appReveal>{{ t().experience }}</h2>
+
+  <ol class="timeline">
+    @for (role of roles(); track role.slug) {
+      <li class="role" [appReveal]="$index + 1">
+        <div class="role-head">
+          <h3>{{ role.title }}</h3>
+          <span class="dates">{{ role.dates }}</span>
+        </div>
+        <p class="org">{{ role.company }} &middot; {{ role.location }}</p>
+        <div class="markdown-body markdown-body--tight" [innerHTML]="role.body | markdown"></div>
+      </li>
+    }
+  </ol>
+</section>

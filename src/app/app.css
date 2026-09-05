@@ -1,0 +1,33 @@
+/*
+ * Wide enough to use a large screen, capped so the page never runs edge to
+ * edge. Prose inside stays limited to --measure for line length, so the extra
+ * width goes to the skills and project grids rather than to longer lines.
+ */
+.page {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  /* Extra top padding so content clears the language selector pinned in the
+     corner — the portrait now occupies that same top-right area. */
+  padding: calc(var(--space-xl) + var(--space-md)) var(--space-xl) var(--space-xl);
+}
+
+/* Pinned to the page corner so it is reachable on every route. */
+app-language-selector {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

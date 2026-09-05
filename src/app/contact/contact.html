@@ -1,0 +1,49 @@
+<section class="contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading" appReveal>{{ t().contact }}</h2>
+
+  <div class="panel" [appReveal]="1">
+    <p class="intro">{{ t().contactIntro }}</p>
+
+    <p class="address">{{ email() }}</p>
+
+    <div class="field">
+      <label for="contact-subject">{{ t().subjectLabel }}</label>
+      <!-- Template refs rather than ngModel: the app pulls in no forms module. -->
+      <input
+        id="contact-subject"
+        #subjectField
+        type="text"
+        autocomplete="off"
+        (input)="subject.set(subjectField.value)"
+      />
+    </div>
+
+    <div class="field">
+      <label for="contact-message">{{ t().messageLabel }}</label>
+      <!-- Capped: some mail clients truncate a very long mailto: URL. -->
+      <textarea
+        id="contact-message"
+        #messageField
+        rows="5"
+        maxlength="1500"
+        (input)="message.set(messageField.value)"
+      ></textarea>
+    </div>
+
+    <div class="actions">
+      <!-- A link, not a click handler, so it keeps real link behaviour. -->
+      <a class="button button--primary" [href]="mailto()">{{ t().sendMessage }}</a>
+
+      <button class="button" type="button" (click)="copyEmail()">
+        {{ copied() ? t().emailCopied : t().copyEmail }}
+      </button>
+
+      <!-- Announced on copy; the button label alone would not be. -->
+      <span class="status" role="status" aria-live="polite">
+        @if (copied()) {
+          {{ t().emailCopied }}
+        }
+      </span>
+    </div>
+  </div>
+</section>
