@@ -34,6 +34,7 @@ export interface UiText {
   projectNotFound: string;
   noProjectMatching: (slug: string) => string;
   languageToggle: string;
+  sections: string;
 }
 
 export const UI_TEXT: Record<Lang, UiText> = {
@@ -67,6 +68,7 @@ export const UI_TEXT: Record<Lang, UiText> = {
     projectNotFound: 'Project not found',
     noProjectMatching: (slug) => `There is no project matching “${slug}”.`,
     languageToggle: 'Language: English. Switch to German.',
+    sections: 'Sections',
   },
   de: {
     role: 'Full-Stack-Entwickler',
@@ -98,5 +100,6 @@ export const UI_TEXT: Record<Lang, UiText> = {
     projectNotFound: 'Projekt nicht gefunden',
     noProjectMatching: (slug) => `Es gibt kein Projekt mit dem Namen „${slug}“.`,
     languageToggle: 'Sprache: Deutsch. Zu Englisch wechseln.',
+    sections: 'Abschnitte',
   },
 };

@@ -25,12 +25,14 @@
     <app-education />
     <hr class="divider" appReveal />
     <app-certificates />
+
     <!-- The divider is inside the guard too: without it, an empty Downloads
          section would leave two dividers stacked with nothing between them. -->
     @if (hasDownloads) {
       <hr class="divider" appReveal />
       <app-downloads />
     }
+
     <hr class="divider" appReveal />
     <app-contact />
     <hr class="divider" appReveal />
