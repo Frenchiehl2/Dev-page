@@ -1,0 +1,50 @@
+/*
+ * Entry rows, matching education.css so the two neighbouring sections read as
+ * one idea. Duplicated rather than shared: experience.css and education.css
+ * already carry this block independently, so a third copy follows the
+ * convention rather than inventing a shared rule for this change alone.
+ */
+.entries {
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Timeline rule, matching .entry in education.css and .role in experience.css. */
+.entry {
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--border);
+}
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+}
+
+.entry-head h3 {
+  font-size: 1.05rem;
+}
+
+.dates {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.org {
+  margin-top: var(--space-xs);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/*
+ * The detail text is Markdown rendered via [innerHTML]; see
+ * .markdown-body--tight in src/styles.css.
+ */

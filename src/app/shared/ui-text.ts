@@ -14,6 +14,8 @@ export interface UiText {
   projects: string;
   experience: string;
   education: string;
+  certificates: string;
+  downloads: string;
   contact: string;
   contactIntro: string;
   subjectLabel: string;
@@ -44,6 +46,8 @@ export const UI_TEXT: Record<Lang, UiText> = {
     projects: 'Projects',
     experience: 'Practical Experience',
     education: 'Education',
+    certificates: 'Certificates',
+    downloads: 'Downloads',
     contact: 'Contact',
     contactIntro:
       'Write a message below and press send — it opens in your own mail app, addressed to me.',
@@ -73,6 +77,8 @@ export const UI_TEXT: Record<Lang, UiText> = {
     projects: 'Projekte',
     experience: 'Praktische Erfahrung',
     education: 'Ausbildung',
+    certificates: 'Zertifikate',
+    downloads: 'Downloads',
     contact: 'Kontakt',
     contactIntro:
       'Schreiben Sie unten eine Nachricht und klicken Sie auf Senden — sie öffnet sich in Ihrem eigenen E-Mail-Programm, an mich adressiert.',

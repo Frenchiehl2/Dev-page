@@ -1,0 +1,39 @@
+<!-- Hidden entirely while there is nothing to offer; home.html drops the
+     neighbouring divider on the same condition. -->
+@if (downloads().length) {
+  <section class="downloads" aria-labelledby="downloads-heading">
+    <h2 id="downloads-heading" appReveal>{{ t().downloads }}</h2>
+
+    <ul class="grid">
+      @for (download of downloads(); track download.file) {
+        <!--
+          The reveal sits on this cell, not the tile: the tile owns a `transition`
+          for its hover state, and a component-scoped rule outranks the global
+          .reveal one, which would otherwise clobber the fade.
+        -->
+        <li class="cell" [appReveal]="$index + 1">
+          <!-- download: same-origin, so the browser saves the file rather
+               than navigating to it. -->
+          <a class="tile notched" [href]="download.file" download>
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 3v12M7 10l5 5 5-5M4 21h16" />
+            </svg>
+            <span class="name">{{ download.label }}</span>
+            @if (download.meta) {
+              <span class="meta">{{ download.meta }}</span>
+            }
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+}

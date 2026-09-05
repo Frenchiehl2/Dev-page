@@ -35,6 +35,10 @@
   --tint-hot: rgb(255 140 18 / 18%);
   /* Tuned length: far enough to clear the Skills heading, then done. */
   --head-glow: 950px;
+  /* Film grain: slight enough to read as texture, never as a haze. */
+  --grain-opacity: 0.07;
+  /* 8 steps over this cycle is ~13 changes a second: film boil, not a strobe. */
+  --grain-cycle: 0.6s;
   --grid-line: rgb(250 250 250 / 3%);
 
   /* Crosshair: an even mix of the yellow and the muted grey, so the reticle
