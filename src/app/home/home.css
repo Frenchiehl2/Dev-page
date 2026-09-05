@@ -61,14 +61,44 @@ main {
 }
 
 /*
- * Section separator. Matches the masthead's border-bottom, so every rule on
- * the page is the same weight and colour, and follows --border into dark mode.
- * The border/margin reset clears the UA's inset groove and its own margins,
- * which would otherwise stack on top of the flex gap.
+ * Section separator, drawn as a 1px gradient bar rather than a border so it
+ * can carry the orange-to-yellow accent. The border/margin reset clears the
+ * UA's inset groove and its own margins, which would otherwise stack on top
+ * of the flex gap.
  */
 .divider {
   width: 100%;
+  height: 1px;
   margin: 0;
   border: 0;
-  border-top: 1px solid var(--border);
+  /* The one place the orange-to-yellow gradient shows, so section breaks
+     glow faintly rather than reading as plain grey rules. */
+  background: var(--accent-gradient);
+  opacity: 0.45;
+}
+
+/* One flex item now, so it re-declares main's column and gap internally. */
+.foot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/*
+ * Warm ground under the closing sections. Bleeds past the 1240px column with
+ * the 50%/50vw trick and runs past the page's bottom padding to the true foot
+ * of the document; body's overflow-x: clip absorbs the scrollbar-width
+ * overhang that 100vw would otherwise add.
+ */
+.foot::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--space-lg)) 0 calc(-1 * var(--space-xl)) 0;
+  margin-inline: calc(50% - 50vw);
+  z-index: -1;
+  pointer-events: none;
+  /* Reaches full tint partway down and holds, so the taller region does not
+     spend its whole height still fading in. */
+  background: linear-gradient(to bottom, transparent, var(--tint-warm) 60%, var(--tint-warm));
 }

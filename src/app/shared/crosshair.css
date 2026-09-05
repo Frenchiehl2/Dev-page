@@ -1,0 +1,98 @@
+/*
+ * Backdrop layer, not an overlay.
+ *
+ * z-index -1 is what puts this behind all content: .page sets position:
+ * relative with z-index auto, so it creates no stacking context and this host
+ * resolves against the root, painting under every normal-flow element. It sits
+ * above the body::before grid and glows (same z-index, earlier in tree order)
+ * and below the home page's warm foot, which comes later — so in that region
+ * the crosshair reads through the tint slightly warmed.
+ */
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+:host(.is-visible) {
+  opacity: 1;
+}
+
+.line {
+  position: absolute;
+  background: var(--crosshair-line);
+  /* Keeps the per-frame move on the compositor. */
+  will-change: transform;
+}
+
+.line--x {
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(var(--cy, 0));
+}
+
+.line--y {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(var(--cx, 0));
+}
+
+/* Open box around the pointer: the centre stays clear, so the reticle never
+   covers whatever is being pointed at. */
+.target {
+  --size: 34px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  transform: translate(var(--cx, 0), var(--cy, 0)) translate(-50%, -50%);
+  will-change: transform;
+}
+
+.bracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 0 solid var(--crosshair-target);
+}
+
+.bracket--tl {
+  top: 0;
+  left: 0;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.bracket--tr {
+  top: 0;
+  right: 0;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.bracket--bl {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.bracket--br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    transition: none;
+  }
+}

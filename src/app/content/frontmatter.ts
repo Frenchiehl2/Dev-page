@@ -49,9 +49,7 @@ function parseValue(raw: string): string | string[] {
 export function parseFrontmatter(source: string, label = 'content'): Frontmatter {
   const match = FRONTMATTER_BLOCK.exec(source);
   if (!match) {
-    throw new Error(
-      `${label}: missing frontmatter. Expected the file to open with a '---' block.`,
-    );
+    throw new Error(`${label}: missing frontmatter. Expected the file to open with a '---' block.`);
   }
 
   const data: Record<string, string | string[]> = {};

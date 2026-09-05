@@ -40,7 +40,7 @@
   padding: 0.15rem 0.5rem;
   background: var(--tag-bg);
   color: var(--tag-text);
-  border-radius: 999px;
+  border-radius: var(--radius);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -70,14 +70,14 @@
   margin-bottom: var(--space-lg);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: var(--radius);
   color: var(--accent);
   text-decoration: none;
   transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    stroke 200ms ease,
-    color 200ms ease;
+    background-color var(--transition),
+    border-color var(--transition),
+    stroke var(--transition),
+    color var(--transition);
 }
 
 /* stroke="currentColor" in the markup, so the icon follows .back's color. */
@@ -90,7 +90,7 @@
 .back:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--bg);
 }
 
 .back:focus-visible {

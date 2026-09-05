@@ -45,7 +45,8 @@ export const UI_TEXT: Record<Lang, UiText> = {
     experience: 'Practical Experience',
     education: 'Education',
     contact: 'Contact',
-    contactIntro: 'Write a message below and press send — it opens in your own mail app, addressed to me.',
+    contactIntro:
+      'Write a message below and press send — it opens in your own mail app, addressed to me.',
     subjectLabel: 'Subject',
     messageLabel: 'Message',
     sendMessage: 'Send message',

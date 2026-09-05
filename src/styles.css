@@ -1,14 +1,42 @@
 /* Global baseline: reset, design tokens, typography. */
 
+/*
+ * Dark only, by design: this palette is built on neon-against-near-black
+ * contrast, which has no meaningful light counterpart. There is deliberately
+ * no prefers-color-scheme branch — forcing light must not change the page.
+ */
 :root {
-  --bg: #f7f7f5;
-  --surface: #ffffff;
-  --border: #e3e3df;
-  --text: #1c1c1a;
-  --text-muted: #62625c;
-  --accent: #3d5a80;
-  --tag-bg: #eceef2;
-  --tag-text: #3d5a80;
+  /* Pure-neutral ground and layers: no hue, so the accents carry all colour. */
+  --bg: #050505;
+  --surface: #121212;
+  --surface-raised: #1f1f1f;
+  --border: #262626;
+  --text: #fafafa;
+  --text-muted: #8a8a8a;
+
+  /* Orange primary with a yellow companion for tints and gradients. */
+  --accent: #ff8c12;
+  --accent-warm: #f1ea39;
+  --accent-gradient: linear-gradient(90deg, var(--accent), var(--accent-warm));
+
+  /* Glitch pair, carried by element borders. */
+  --glitch-1: #fe54b6;
+  --glitch-2: #83f6e2;
+  /* Pre-muted over --border, so a resting border is tinted rather than neon. */
+  --border-glitch-1: #55303f;
+  --border-glitch-2: #2c524d;
+
+  --tag-bg: #1a1a1a;
+  --tag-text: var(--accent);
+
+  /* Backdrop: the yellow the foot of the page fades into, and the grid line. */
+  --tint-warm: rgb(241 234 57 / 18%);
+  --grid-line: rgb(250 250 250 / 3%);
+
+  /* Crosshair: an even mix of the yellow and the muted grey, so the reticle
+     picks up the page's warmth without introducing a new hue. */
+  --crosshair-line: rgb(190 186 98 / 12%);
+  --crosshair-target: rgb(214 208 130 / 26%);
 
   --space-xs: 0.35rem;
   --space-sm: 0.6rem;
@@ -16,23 +44,30 @@
   --space-lg: 1.75rem;
   --space-xl: 3rem;
 
-  --radius: 10px;
+  /* Square corners are the defining trait of this style. */
+  --radius: 0;
+
+  /*
+   * Cut top-right and bottom-left; the other two corners stay square.
+   * --notch-clip references var(--notch) rather than baking the value in:
+   * custom properties substitute at point of use, so an element can
+   * re-declare --notch and get the same polygon at a different depth. The
+   * inner fill layer of .notched relies on exactly that.
+   */
+  --notch: 14px;
+  --notch-clip: polygon(
+    0 0,
+    calc(100% - var(--notch)) 0,
+    100% var(--notch),
+    100% 100%,
+    var(--notch) 100%,
+    0 calc(100% - var(--notch))
+  );
   --measure: 68ch;
+  --transition: 0.25s ease-in-out;
+  --font-display: 'Chakra Petch', system-ui, sans-serif;
 
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #16171a;
-    --surface: #1e2024;
-    --border: #2f323a;
-    --text: #e8e8e6;
-    --text-muted: #a0a29c;
-    --accent: #8ab0d9;
-    --tag-bg: #262b33;
-    --tag-text: #a8c4e3;
-  }
+  color-scheme: dark;
 }
 
 *,
@@ -43,19 +78,55 @@
 
 body {
   margin: 0;
+  position: relative;
+  /* The full-bleed foot on the home page widens past the column; clip rather
+     than hidden, which would break position: sticky if it is ever needed. */
+  overflow-x: clip;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * Decorative backdrop: a 40px blueprint grid, with an orange glow up near the
+ * masthead and a cyan one low down. position: fixed so it holds still while
+ * the page scrolls, and so it is painted once rather than per scroll frame.
+ *
+ * z-index: -1 puts it above the body background and below all content — body
+ * creates no stacking context, so content paints over it without needing a
+ * z-index of its own.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(60rem 40rem at 15% 0%, rgb(255 140 18 / 10%), transparent 70%),
+    radial-gradient(50rem 40rem at 85% 85%, rgb(131 246 226 / 6%), transparent 70%),
+    repeating-linear-gradient(to right, var(--grid-line) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(to bottom, var(--grid-line) 0 1px, transparent 1px 40px);
+}
+
 h1,
 h2,
 h3 {
-  line-height: 1.25;
   margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  text-transform: uppercase;
 }
 
 p {
@@ -74,9 +145,8 @@ ul {
  */
 section > h2 {
   font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -144,6 +214,61 @@ a {
   display: flex;
 }
 
+/*
+ * Angled panel shape for cards, tiles and the contact panel.
+ *
+ * clip-path clips everything the element paints, border included, so the
+ * border is rebuilt as a clipped gradient layer with the surface inset 1px on
+ * top of it. That is what puts an outline on the diagonals, which a plain
+ * border cannot reach. The hard 135deg split reproduces the magenta-top-left /
+ * cyan-bottom-right border these boxes had as a rectangle, now following the
+ * cut instead.
+ */
+.notched,
+.card-grid .card {
+  position: relative;
+  border: 0;
+  clip-path: var(--notch-clip);
+  background: linear-gradient(
+    135deg,
+    var(--border-glitch-1) 0 50%,
+    var(--border-glitch-2) 50% 100%
+  );
+}
+
+.notched::before,
+.card-grid .card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  /* 0.6px shallower so the diagonal gap measures 1px like the straight edges:
+     a 1px inset offsets a 45deg line by sqrt(2)px, which would read thick. */
+  --notch: 13.4px;
+  clip-path: var(--notch-clip);
+  background: var(--surface);
+}
+
+/*
+ * Focus thickens the border layer to 2px, matching the outline it replaces —
+ * a 1px edge would be a weaker focus indicator than the one that was there.
+ * The inner notch shrinks by inset x (2 - sqrt2), which keeps the diagonal the
+ * same width as the straight edges.
+ */
+.notched:focus-visible::before,
+.card-grid .card:focus-visible::before {
+  inset: 2px;
+  --notch: 12.8px;
+}
+
+/*
+ * The fill above is positioned, so it would paint over non-positioned content.
+ * Positioning the children puts them later in tree order, and so on top.
+ */
+.notched > *,
+.card-grid .card > * {
+  position: relative;
+}
+
 /* The whole card is one link, styled to read and press like a button. */
 .card-grid .card {
   flex: 1;
@@ -153,31 +278,36 @@ a {
      overflow:hidden clips the image to the rounded corners. */
   padding: 0;
   overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
   color: inherit;
   text-decoration: none;
   transition:
-    transform 90ms ease,
-    border-color 90ms ease,
-    box-shadow 90ms ease;
+    transform var(--transition),
+    background var(--transition),
+    filter var(--transition);
 }
 
 .card-grid .card:hover {
-  border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+  background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
+  /* drop-shadow, not box-shadow: filters apply after the clip, so the glow
+     traces the angled silhouette instead of being clipped away with it. */
+  filter: drop-shadow(-3px -3px 0 rgb(254 84 182 / 25%))
+    drop-shadow(3px 3px 0 rgb(131 246 226 / 25%));
 }
 
 .card-grid .card:active {
   transform: translateY(0);
-  box-shadow: none;
+  filter: none;
 }
 
+/*
+ * outline is clipped away by clip-path, so focus is rebuilt from the border
+ * layer plus a glow. Both change together, which keeps it unmistakable.
+ */
 .card-grid .card:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline: none;
+  background: var(--accent);
+  filter: drop-shadow(0 0 6px rgb(255 140 18 / 60%));
 }
 
 .card-grid .banner {
@@ -223,7 +353,7 @@ a {
   padding: 0.15rem 0.5rem;
   background: var(--tag-bg);
   color: var(--tag-text);
-  border-radius: 999px;
+  border: 1px solid var(--border);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -262,9 +392,8 @@ a {
 .markdown-body h2 {
   margin-top: var(--space-xl);
   font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -291,7 +420,7 @@ a {
 .markdown-body code {
   padding: 0.1rem 0.35rem;
   background: var(--tag-bg);
-  border-radius: 4px;
+  border-radius: var(--radius);
   font-size: 0.85em;
 }
 

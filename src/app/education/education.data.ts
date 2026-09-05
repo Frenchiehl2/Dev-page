@@ -24,7 +24,7 @@ export interface Study {
 const SOURCES = {
   'tu-delft': tuDelft,
   'hogeschool-rotterdam': hogeschoolRotterdam,
-  'hda':hda,
+  hda: hda,
 };
 
 export const EDUCATION: Localised<Study> = loadEntries(

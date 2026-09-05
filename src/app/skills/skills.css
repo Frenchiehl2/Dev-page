@@ -17,16 +17,14 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-md) var(--space-sm);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  /* Shape, border layer and surface fill come from the global .notched rule. */
   text-align: center;
 }
 
 .logo {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: var(--radius);
   object-fit: contain;
 }
 
