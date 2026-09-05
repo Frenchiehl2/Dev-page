@@ -1,0 +1,56 @@
+<!-- Hidden entirely while there is nothing to show; home.html drops the
+     neighbouring divider on the same condition. -->
+@if (videos().length) {
+  <section class="showcase" aria-labelledby="showcase-heading">
+    <h2 id="showcase-heading" appReveal>{{ t().showcase }}</h2>
+
+    <ul class="grid">
+      @for (video of videos(); track video.id) {
+        <!--
+          The reveal sits on this cell, not the frame: the frame owns the
+          notched clip and a transition, and a component-scoped rule outranks
+          the global .reveal one, which would otherwise clobber the fade.
+        -->
+        <li class="cell" [appReveal]="$index + 1">
+          <div class="frame notched">
+            @if (isPlaying(video.id)) {
+              <iframe
+                class="player"
+                [src]="embed(video.id)"
+                [title]="video.title"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            } @else {
+              <!-- Facade: one thumbnail until pressed, rather than a megabyte
+                   of player code per video on page load. -->
+              <button
+                class="poster"
+                type="button"
+                [attr.aria-label]="t().playVideo(video.title)"
+                (click)="play(video.id)"
+              >
+                <!-- alt="" : decorative, the caption and the label carry the name. -->
+                <img
+                  class="thumb"
+                  [src]="video.thumb"
+                  alt=""
+                  width="480"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </button>
+            }
+          </div>
+          <p class="caption">{{ video.title }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+}

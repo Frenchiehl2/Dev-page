@@ -12,14 +12,32 @@
   min-width: 0;
 }
 
-.portrait {
+/*
+ * The frame is a gradient behind 2px of padding, with the image clipped 2px
+ * inside it, so the colour reads as a border on every edge including the two
+ * diagonals. A plain border cannot do that: clip-path cuts it away at the
+ * corners. And the .notched recipe cannot be reused here either — it draws its
+ * border on a ::before, which a replaced element like <img> never renders.
+ *
+ * Corners are cut on the opposite diagonal to the cards and tiles.
+ */
+.portrait-frame {
   flex: none;
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
   margin-top: 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
+  clip-path: var(--notch-clip-alt);
+}
+
+.portrait {
+  display: block;
+  width: 220px;
+  height: 320px;
+  object-fit: cover;
+  /* 1.2px shallower so the frame stays 2px around the cuts too: a 2px inset
+     displaces a 45deg line by 2*sqrt2, so the inner notch loses 2*(2 - sqrt2). */
+  --notch: 12.8px;
+  clip-path: var(--notch-clip-alt);
 }
 
 @media (max-width: 600px) {
@@ -27,9 +45,16 @@
     gap: var(--space-md);
   }
 
+  /* A 14px notch would eat most of an 88px-wide corner, so it scales down too
+     -- with the same sqrt2 compensation on the inner shape. */
+  .portrait-frame {
+    --notch: 8px;
+  }
+
   .portrait {
     width: 88px;
-    height: 88px;
+    height: 120px;
+    --notch: 6.8px;
   }
 }
 
@@ -98,7 +123,22 @@ main {
   margin-inline: calc(50% - 50vw);
   z-index: -1;
   pointer-events: none;
-  /* Reaches full tint partway down and holds, so the taller region does not
-     spend its whole height still fading in. */
-  background: linear-gradient(to bottom, transparent, var(--tint-warm) 60%, var(--tint-warm));
+  /*
+   * The first stop at 12% is what holds the tint back: a gradient's first
+   * colour extends upward from its stop, so everything above it stays clear
+   * and the fade begins about halfway down Education instead of at the top of
+   * this box. Moving the stop rather than the box's top inset is deliberate --
+   * the percentages are computed against the box, so shortening it would drag
+   * the 60% hold up and weaken the foot of the page.
+   *
+   * To retune, read the real midpoint in the console:
+   *   const f = document.querySelector('.foot').getBoundingClientRect();
+   *   const e = document.querySelector('app-education section').getBoundingClientRect();
+   *   const c = document.querySelector('app-certificates section').getBoundingClientRect();
+   *   (((e.top + c.top) / 2 - f.top) / f.height * 100).toFixed(1);
+   *
+   * It then holds full tint from 60% down, so the bottom does not spend its
+   * whole height still fading in.
+   */
+  background: linear-gradient(to bottom, transparent 12%, var(--tint-warm) 60%, var(--tint-warm));
 }

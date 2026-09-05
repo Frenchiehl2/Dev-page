@@ -1,12 +1,9 @@
 ---
-location: Rotterdam, Netherlands
-focus: Angular · TypeScript · Node
-email: aleksalukic38@gmail.com
+location: Hessen, Germany
+focus: Embeded systems · C++/C# · Simulation software
+email: lukicaleksa38@gmail.com
 ---
 
-Full-stack developer with eight years building web applications, most of them in TypeScript. I like
-problems where the hard part is the data model rather than the framework.
+Software and system developer with strong knowelage in embeded system programming, Graphics programming and simulation software with great depth in 3D Modeling, building reliable and mission critical systems.
 
-Currently focused on front-end architecture and design systems — making large Angular codebases stay
-legible as teams grow. Previously spent several years on backend services and data pipelines, which
-still shapes how I think about state on the client.
+Currently focused on Game Design and Development, making imersive words where stunning graphics, physic and AI come to life to tell a great story, where customer feedback matters and hardware optimization is most relevant for top performance.

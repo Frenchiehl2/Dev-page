@@ -6,6 +6,7 @@ import { SKILLS } from './skills/skills.data';
 import { Language } from './shared/language';
 import { UI_TEXT } from './shared/ui-text';
 import { DOWNLOADS } from './downloads/downloads.data';
+import { SHOWCASE } from './showcase/showcase.data';
 
 /*
  * The Downloads section hides itself while it has no entries, so its heading is
@@ -20,6 +21,7 @@ function expectedHeadings(lang: 'en' | 'de'): string[] {
     t.skills,
     t.commercialReleases,
     t.projects,
+    ...(SHOWCASE.length ? [t.showcase] : []),
     t.experience,
     t.education,
     t.certificates,

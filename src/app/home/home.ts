@@ -7,6 +7,8 @@ import { Overview } from '../overview/overview';
 import { Skills } from '../skills/skills';
 import { CommercialReleases } from '../commercial-releases/commercial-releases';
 import { Projects } from '../projects/projects';
+import { Showcase } from '../showcase/showcase';
+import { SHOWCASE } from '../showcase/showcase.data';
 import { Experience } from '../experience/experience';
 import { Education } from '../education/education';
 import { Certificates } from '../certificates/certificates';
@@ -21,6 +23,7 @@ import { Contacts } from '../contacts/contacts';
     Skills,
     CommercialReleases,
     Projects,
+    Showcase,
     Experience,
     Education,
     Certificates,
@@ -39,5 +42,6 @@ export class Home {
   protected readonly t = computed(() => UI_TEXT[this.language.current()]);
   protected readonly portrait = PORTRAIT;
   /** Drives the @if that hides the section, and its divider, while empty. */
+  protected readonly hasShowcase = SHOWCASE.length > 0;
   protected readonly hasDownloads = DOWNLOADS.length > 0;
 }

@@ -12,6 +12,7 @@ export interface UiText {
   skills: string;
   commercialReleases: string;
   projects: string;
+  showcase: string;
   experience: string;
   education: string;
   certificates: string;
@@ -33,18 +34,20 @@ export interface UiText {
   backToProfile: string;
   projectNotFound: string;
   noProjectMatching: (slug: string) => string;
+  playVideo: (title: string) => string;
   languageToggle: string;
   sections: string;
 }
 
 export const UI_TEXT: Record<Lang, UiText> = {
   en: {
-    role: 'Full-Stack Developer',
-    tagline: 'Building maintainable web applications in TypeScript, mostly with Angular.',
+    role: 'Software and systems engineer',
+    tagline: 'Building maintainable software and systems with full proof design.',
     overview: 'Overview',
     skills: 'Skills',
     commercialReleases: 'Commercial Releases',
     projects: 'Projects',
+    showcase: 'Showcase',
     experience: 'Practical Experience',
     education: 'Education',
     certificates: 'Certificates',
@@ -67,16 +70,18 @@ export const UI_TEXT: Record<Lang, UiText> = {
     backToProfile: 'Back to profile',
     projectNotFound: 'Project not found',
     noProjectMatching: (slug) => `There is no project matching “${slug}”.`,
+    playVideo: (title) => `Play: ${title}`,
     languageToggle: 'Language: English. Switch to German.',
     sections: 'Sections',
   },
   de: {
-    role: 'Full-Stack-Entwickler',
-    tagline: 'Wartbare Webanwendungen in TypeScript, meist mit Angular.',
+    role: 'Software- und Systemingenieur',
+    tagline: 'Entwicklung wartbarer Software und Systeme mit einem absolut zuverlässigen Design.',
     overview: 'Überblick',
     skills: 'Fähigkeiten',
     commercialReleases: 'Kommerzielle Veröffentlichungen',
     projects: 'Projekte',
+    showcase: 'Showcase',
     experience: 'Praktische Erfahrung',
     education: 'Ausbildung',
     certificates: 'Zertifikate',
@@ -99,6 +104,7 @@ export const UI_TEXT: Record<Lang, UiText> = {
     backToProfile: 'Zurück zum Profil',
     projectNotFound: 'Projekt nicht gefunden',
     noProjectMatching: (slug) => `Es gibt kein Projekt mit dem Namen „${slug}“.`,
+    playVideo: (title) => `Abspielen: ${title}`,
     languageToggle: 'Sprache: Deutsch. Zu Englisch wechseln.',
     sections: 'Abschnitte',
   },

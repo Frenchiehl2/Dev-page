@@ -5,8 +5,10 @@
     <p class="tagline">{{ t().tagline }}</p>
   </div>
 
-  <!-- alt="" : decorative, the name sits directly beside it. -->
-  <img class="portrait" [src]="portrait" alt="" width="400" height="400" />
+  <div class="portrait-frame">
+    <!-- alt="" : decorative, the name sits directly beside it. -->
+    <img class="portrait" [src]="portrait" alt="" width="400" height="500" />
+  </div>
 </header>
 
 <main>
@@ -17,6 +19,14 @@
   <app-commercial-releases />
   <hr class="divider" appReveal />
   <app-projects />
+
+  <!-- The divider is inside the guard too: without it, an empty Showcase
+       section would leave two dividers stacked with nothing between them. -->
+  @if (hasShowcase) {
+    <hr class="divider" appReveal />
+    <app-showcase />
+  }
+
   <hr class="divider" appReveal />
   <app-experience />
   <hr class="divider" appReveal />
