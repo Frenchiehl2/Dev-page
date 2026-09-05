@@ -30,6 +30,8 @@ export interface UiText {
   email: string;
   viewProject: string;
   viewRelease: string;
+  viewRepository: string;
+  visitSite: string;
   technologiesUsed: string;
   backToProfile: string;
   projectNotFound: string;
@@ -66,6 +68,8 @@ export const UI_TEXT: Record<Lang, UiText> = {
     email: 'Email',
     viewProject: 'View project →',
     viewRelease: 'View release →',
+    viewRepository: 'View repository',
+    visitSite: 'Visit site',
     technologiesUsed: 'Technologies used',
     backToProfile: 'Back to profile',
     projectNotFound: 'Project not found',
@@ -100,6 +104,8 @@ export const UI_TEXT: Record<Lang, UiText> = {
     email: 'E-Mail',
     viewProject: 'Projekt ansehen →',
     viewRelease: 'Release ansehen →',
+    viewRepository: 'Repository ansehen',
+    visitSite: 'Website besuchen',
     technologiesUsed: 'Verwendete Technologien',
     backToProfile: 'Zurück zum Profil',
     projectNotFound: 'Projekt nicht gefunden',

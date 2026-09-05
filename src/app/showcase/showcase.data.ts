@@ -22,7 +22,7 @@ export interface ShowcaseVideo {
  *
  *   {
  *     id: 'dQw4w9WgXcQ',
- *     title: { en: 'Palletjack demo', de: 'Palletjack-Demo' },
+ *     title: { en: 'Renderer demo', de: 'Renderer-Demo' },
  *   }
  */
 export const SHOWCASE: ShowcaseVideo[] = [

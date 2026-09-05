@@ -88,6 +88,20 @@ export function requireString(
   return value;
 }
 
+/**
+ * Reads an optional string field, returning undefined when it is absent.
+ *
+ * The require* helpers above both throw, which is right for fields every entry
+ * must carry. This is for ones an entry may legitimately lack.
+ */
+export function optionalString(
+  data: Record<string, string | string[]>,
+  key: string,
+): string | undefined {
+  const value = data[key];
+  return typeof value === 'string' && value !== '' ? value : undefined;
+}
+
 /** Reads a required list field, failing loudly if it is missing or the wrong shape. */
 export function requireList(
   data: Record<string, string | string[]>,

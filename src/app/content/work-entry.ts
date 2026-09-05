@@ -1,5 +1,5 @@
 import { Localised, Sources, loadEntries } from './load-entries';
-import { requireList, requireString } from './frontmatter';
+import { optionalString, requireList, requireString } from './frontmatter';
 
 /**
  * A piece of work shown as a card and given its own detail page — a portfolio
@@ -7,7 +7,7 @@ import { requireList, requireString } from './frontmatter';
  * files under src/content with an identical set of frontmatter fields.
  */
 export interface WorkEntry {
-  /** URL segment for the detail route, e.g. /projects/tideline — same in every language. */
+  /** URL segment for the detail route, e.g. /projects/vulkan-renderer — same in every language. */
   slug: string;
   title: string;
   /** Short blurb shown on the card. */
@@ -19,6 +19,11 @@ export interface WorkEntry {
   body: string;
   /** URL of the banner image, emitted from src/content by the build. */
   banner: string;
+  /**
+   * Where the work itself lives — a repository, a product page. Optional: an
+   * entry with nothing to point at simply renders no link.
+   */
+  url?: string;
 }
 
 /** The shape each work-entry folder's index.ts exports. */
@@ -44,5 +49,6 @@ export function loadWorkEntries(
     body,
     // From the folder's own barrel — one banner per entry, shared by both languages.
     banner: source.banner,
+    url: optionalString(fields, 'url'),
   }));
 }

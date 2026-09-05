@@ -97,8 +97,8 @@ describe('Home', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     // Scoped to .projects: Commercial Releases renders the same card markup.
     const cards = compiled.querySelectorAll('.projects a.card');
-    expect(cards.length).toBe(3);
-    expect(cards[0].getAttribute('href')).toBe('/projects/tideline');
+    expect(cards.length).toBe(8);
+    expect(cards[0].getAttribute('href')).toBe('/projects/local-llm');
   });
 
   it('switches every heading and the article content to German', async () => {
@@ -116,7 +116,7 @@ describe('Home', () => {
     expect(headings()).toEqual(expectedHeadings('de'));
     // ...and so did the article content underneath it.
     expect(compiled.querySelector('.role .org')?.textContent).toContain('Rotterdam');
-    expect(compiled.querySelector('.projects .card p')?.textContent).toContain('selbst gehostetes');
+    expect(compiled.querySelector('.projects .card p')?.textContent).toContain('Inferenz-Rechner');
     expect(compiled.querySelector('.entry h3')?.textContent).toContain('M.Sc.');
   });
 
