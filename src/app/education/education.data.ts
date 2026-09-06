@@ -1,8 +1,10 @@
 import { Localised, loadEntries } from '../content/load-entries';
 import { requireString } from '../content/frontmatter';
-import tuDelft from '../../content/education/tu-delft';
-import hogeschoolRotterdam from '../../content/education/hogeschool-rotterdam';
+import lgs_fos from '../../content/education/lgs(fos)';
+import lgs from '../../content/education/lgs';
 import hda from '../../content/education/hda';
+import gss from '../../content/education/gss';
+import tu from  '../../content/education/tu_darmstadt';
 
 /** One qualification, loaded from its Markdown files in src/content/education. */
 export interface Study {
@@ -22,9 +24,11 @@ export interface Study {
  * here.
  */
 const SOURCES = {
-  'tu-delft': tuDelft,
-  'hogeschool-rotterdam': hogeschoolRotterdam,
-  hda: hda,
+  'gss':gss,
+  'hogeschool-rotterdam': lgs,
+  'lgs_fos':lgs_fos,
+  'tu':tu,
+  'hda': hda,
 };
 
 export const EDUCATION: Localised<Study> = loadEntries(

@@ -16,4 +16,4 @@ Der Fokus liegt nun darauf, daraus eine vollständig auf Vulkan basierende Rende
 
 - Shader, Texturen und Oberflächennetze, anwendbar auf jede 2D-Fläche.
 - Transformationen und Funktionsinterpolation arbeiten wie vorgesehen.
-- Die Ausrichtung von 3D-Vertices steht noch aus — die aktuelle Grenze.
+

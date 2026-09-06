@@ -1,9 +1,9 @@
 import { Localised, loadEntries } from '../content/load-entries';
 import { requireString } from '../content/frontmatter';
-import meridianLogistics from '../../content/experience/meridian-logistics';
-import kestrelData from '../../content/experience/kestrel-data';
-import bellweatherStudio from '../../content/experience/bellweather-studio';
-
+import Adreana from '../../content/experience/Adreana';
+import Bite from '../../content/experience/Bite';
+import Daenet from '../../content/experience/Daenet';
+import Radio from '../../content/experience/Radiologie';
 /** One role, loaded from its Markdown files in src/content/experience. */
 export interface Role {
   slug: string;
@@ -22,9 +22,10 @@ export interface Role {
  * an index.ts pairing them, then adding one import and one entry here.
  */
 const SOURCES = {
-  'meridian-logistics': meridianLogistics,
-  'kestrel-data': kestrelData,
-  'bellweather-studio': bellweatherStudio,
+  'Daenet Gmbh': Daenet,
+  'Adreana Objects Gmbh': Adreana,
+  'MRT':Radio,
+  'Bite Gameworks': Bite,
 };
 
 export const EXPERIENCE: Localised<Role> = loadEntries(

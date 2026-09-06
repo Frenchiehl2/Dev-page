@@ -5,7 +5,7 @@ import { ProjectDetail, COLLECTIONS, Collection } from './project-detail/project
 import { Language } from './shared/language';
 import { UI_TEXT } from './shared/ui-text';
 
-const SITE_NAME = 'Aleksas porfolio';
+const SITE_NAME = 'Aleksal.dev';
 
 /** Tab title for one work entry, looked up in the collection its route serves. */
 const entryTitle =

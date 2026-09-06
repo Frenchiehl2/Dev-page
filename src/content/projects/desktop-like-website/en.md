@@ -14,6 +14,11 @@ built dynamically when the user asks for it rather than declared up front.
 The bar keeps the state of individual windows, so one that has been put away comes back as it
 was. Icons and windows drag freely, and windows resize the way they would in any desktop.
 
+Building must be done in the  <b>"Desktop"</b> directory
+use <code>npm install</code> to install any other aditional packadges
+install angular: <code>npm install @angular/cli</code>
+serve the website: <code>ng serve</code>
+
 ## Highlights
 
 - Window containers are created dynamically per request, not declared ahead of time.

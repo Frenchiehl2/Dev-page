@@ -16,4 +16,4 @@ Work is now shifted into making it a fully vulkan backed rendering and Game engi
 
 - Shader, texture and surface-mesh handling, applicable to any 2D surface.
 - Transformations and function interpolation working as intended.
-- 3D vertex alignment still outstanding — the current limitation.
+

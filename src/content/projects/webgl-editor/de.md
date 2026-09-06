@@ -1,6 +1,6 @@
 ---
 title: WebGL Editor
-summary: Ein Modell-Editor, der im Browser läuft — geschrieben, um herauszufinden, wie weit GPU-gestützte Beschleunigung Web-Grafik tragen kann.
+summary: Ein Modell-Editor, der im Browser läuft geschrieben, um herauszufinden, wie weit GPU-gestützte Beschleunigung Web-Grafik tragen kann.
 tags: [WebGL, TypeScript, GPU]
 role: Alleinige Entwicklung
 year: 2026

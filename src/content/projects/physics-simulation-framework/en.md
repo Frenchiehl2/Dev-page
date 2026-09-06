@@ -7,11 +7,11 @@ year: 2026
 url: https://github.com/Frenchiehl2/Physics-Simulation-Framework
 ---
 
-A physics simulation framework written in C++ from its own foundations. Qt provides the
+A physics simulation framework written in C++. Qt provides the
 application shell; glad and OpenGL handle the drawing.
 
 Choosing that stack over an off-the-shelf engine means the solver and the picture of it are both
-under direct control — the visualisation shows what the simulation is actually doing rather than
+under direct control the visualisation shows what the simulation is actually doing rather than
 what an engine decided to render.
 
 ## Highlights

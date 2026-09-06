@@ -22,6 +22,9 @@
   width: 100%;
   aspect-ratio: 3 / 1;
   object-fit: cover;
+  /* The frame paints the glitch gradient behind this image, so a banner with
+     alpha needs its own ground or the gradient reads through the artwork. */
+  background: var(--bg);
   /* 1.2px shallower so the frame stays 2px around the cuts too: a 2px inset
      displaces a 45deg line by 2*sqrt2, so the inner notch loses 2*(2 - sqrt2). */
   --notch: 24.8px;

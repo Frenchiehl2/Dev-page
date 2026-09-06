@@ -15,6 +15,11 @@ Die Leiste hält den Zustand einzelner Fenster fest, sodass ein weggelegtes Fens
 zurückkommt. Symbole und Fenster lassen sich frei ziehen, und Fenster ändern ihre Größe wie auf
 jedem Desktop.
 
+Die Entwicklung muss im Verzeichnis  <b>„Desktop“</b> erfolgen.
+Verwenden Sie <code>npm install</code>, um weitere Pakete zu installieren.
+Angular installieren: <code>npm install @angular/cli</code>
+Website bereitstellen: <code>ng serve</code>
+
 ## Highlights
 
 - Fenstercontainer entstehen auf Anforderung dynamisch statt vorab deklariert zu sein.

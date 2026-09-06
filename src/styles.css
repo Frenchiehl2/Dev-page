@@ -371,6 +371,9 @@ a {
      it had before the banner, so the summary and tags stay the focus. */
   aspect-ratio: 3 / 1;
   object-fit: cover;
+  /* Banner art may carry alpha; without a ground of its own the card's border
+     gradient shows through the transparent pixels. */
+  background: var(--bg);
   /* Sits under the 1px border rather than over it. */
   border-bottom: 1px solid var(--border);
 }
