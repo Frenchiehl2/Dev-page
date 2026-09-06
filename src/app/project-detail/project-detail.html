@@ -31,7 +31,17 @@
          one unit rather than the picture appearing inside a frame already there. -->
     <div class="hero-frame" appReveal>
       <!-- alt="" : decorative, the title follows immediately below. -->
-      <img class="hero" [src]="project.banner" alt="" width="650" height="450" />
+      <!-- sizes mirrors .page's padding at each tier (app.css), capped at the
+           1144px column the 1240px page allows. -->
+      <img
+        class="hero"
+        [src]="project.banner"
+        [attr.srcset]="project.bannerSrcset"
+        sizes="(max-width: 600px) calc(100vw - 2rem), (max-width: 900px) calc(100vw - 3.5rem), (max-width: 1240px) calc(100vw - 6rem), 1144px"
+        alt=""
+        width="1200"
+        height="400"
+      />
     </div>
 
     <header class="detail-head" [appReveal]="1">

@@ -20,6 +20,11 @@
 .hero {
   display: block;
   width: 100%;
+  /* The intrinsic height attribute maps to a CSS presentational hint, which
+     would otherwise pin this at 400px and leave aspect-ratio ignored -- both
+     dimensions definite. auto hands control back to the ratio while the
+     attributes still reserve the right box before CSS arrives. */
+  height: auto;
   aspect-ratio: 3 / 1;
   object-fit: cover;
   /* The frame paints the glitch gradient behind this image, so a banner with
@@ -29,6 +34,22 @@
      displaces a 45deg line by 2*sqrt2, so the inner notch loses 2*(2 - sqrt2). */
   --notch: 24.8px;
   clip-path: var(--notch-clip-alt);
+}
+
+/*
+ * Shorter wherever the screen is phone- or tablet-sized -- the same 1100px
+ * boundary at which the section rail takes itself off the page. At 3:1 the
+ * banner claims 42% of the height of a landscape tablet before the title is
+ * reached, which is more of the screen than decoration has earned.
+ *
+ * object-fit: cover does the trimming, taking an eighth off the top and bottom
+ * of the 3:1 art. The banners are decorative (alt="") and the crop is centred,
+ * so the subject survives it.
+ */
+@media (max-width: 1100px) {
+  .hero {
+    aspect-ratio: 4 / 1;
+  }
 }
 
 /* The column narrows to roughly 350px here, where 26px would eat the corner. */

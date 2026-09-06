@@ -20,14 +20,26 @@ export interface WorkEntry {
   /** URL of the banner image, emitted from src/content by the build. */
   banner: string;
   /**
+   * Width-descriptor candidates for the banner, so a phone fetches a file its
+   * slot can use rather than the full 1200px master. Absent for a vector
+   * banner, which needs no ladder -- bind it with [attr.srcset] so the
+   * attribute disappears entirely in that case.
+   */
+  bannerSrcset?: string;
+  /**
    * Where the work itself lives — a repository, a product page. Optional: an
    * entry with nothing to point at simply renders no link.
    */
   url?: string;
 }
 
-/** The shape each work-entry folder's index.ts exports. */
-type WorkSource = Sources & { banner: string };
+/**
+ * The shape each work-entry folder's index.ts exports.
+ *
+ * The two narrow banners are optional: a folder with a vector banner exports
+ * only the one file, and gets no srcset.
+ */
+type WorkSource = Sources & { banner: string; banner800?: string; banner400?: string };
 
 /**
  * Loads one folder of work entries, e.g. src/content/projects.
@@ -49,6 +61,13 @@ export function loadWorkEntries(
     body,
     // From the folder's own barrel — one banner per entry, shared by both languages.
     banner: source.banner,
+    // Composed here rather than in the template, so neither card nor detail
+    // page builds the string itself. Widths match what the variants were
+    // generated at; the master is always 1200 wide.
+    bannerSrcset:
+      source.banner400 && source.banner800
+        ? `${source.banner400} 400w, ${source.banner800} 800w, ${source.banner} 1200w`
+        : undefined,
     url: optionalString(fields, 'url'),
   }));
 }

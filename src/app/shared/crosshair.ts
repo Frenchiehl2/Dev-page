@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { DESKTOP_WIDTH, FINE_POINTER } from './device';
 
-/** Pointers that can hover precisely — a mouse or trackpad, never touch. */
-const DESKTOP_POINTER = '(hover: hover) and (pointer: fine)';
+/** A precise pointer on a screen wide enough for it to be worth drawing. */
+const DESKTOP_CROSSHAIR = `${FINE_POINTER} and ${DESKTOP_WIDTH}`;
 
 /**
  * Crosshair reticle that follows the mouse: full-width and full-height rules
@@ -12,9 +13,11 @@ const DESKTOP_POINTER = '(hover: hover) and (pointer: fine)';
  * The native cursor is left alone on top of it, so pointer, text and resize
  * shapes still read normally and nothing is lost if this never runs.
  *
- * Desktop only, tested by pointer capability rather than screen width or user
- * agent: a phone or tablet reports no fine pointer and gets nothing, while a
- * tablet with a mouse attached correctly does.
+ * Desktop only, tested by pointer capability and viewport width rather than by
+ * user agent. A phone or tablet reports no fine pointer and gets nothing; the
+ * width floor then covers the tablet that does report one — because a mouse or
+ * trackpad is attached, or because it was asked for the desktop site — where a
+ * per-frame loop over a full-viewport layer is the last thing the device needs.
  *
  * The app is zoneless, so the mousemove listener triggers no change detection.
  * Coordinates are written straight to the host as custom properties rather
@@ -41,7 +44,7 @@ export class Crosshair implements OnInit, OnDestroy {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
 
   /** matchMedia is absent in jsdom, so the query is optional-called. */
-  private readonly query = window.matchMedia?.(DESKTOP_POINTER);
+  private readonly query = window.matchMedia?.(DESKTOP_CROSSHAIR);
 
   protected readonly enabled = signal(this.query?.matches ?? false);
 
@@ -51,7 +54,8 @@ export class Crosshair implements OnInit, OnDestroy {
   private frame?: number;
 
   ngOnInit(): void {
-    // Re-evaluate when a mouse is attached or removed mid-session.
+    // Re-evaluate mid-session: a mouse attached or removed, a window
+    // resized past the floor, a tablet rotated or put into split view.
     this.query?.addEventListener('change', this.onQueryChange);
 
     if (this.enabled()) {

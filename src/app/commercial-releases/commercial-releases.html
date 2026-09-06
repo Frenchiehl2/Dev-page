@@ -16,9 +16,11 @@
           <img
             class="banner"
             [src]="release.banner"
+            [attr.srcset]="release.bannerSrcset"
+            sizes="(max-width: 600px) calc(100vw - 2rem), (max-width: 900px) 50vw, 300px"
             alt=""
-            width="200"
-            height="200"
+            width="1200"
+            height="400"
             loading="lazy"
             decoding="async"
           />

@@ -1,6 +1,70 @@
 /* Global baseline: reset, design tokens, typography. */
 
 /*
+ * Display face, self-hosted from public/fonts so no text on the page depends on
+ * a third-party origin. Google Fonts cost two cross-origin handshakes before
+ * the first heading could paint -- one for the stylesheet, one for the glyphs --
+ * and shipped the files from a domain the visitor never asked to contact.
+ *
+ * Only the two weights this site renders are here: 600 for every heading, rail
+ * label, source link and button, and 400 for the contact form's labels, which
+ * inherit normal. To add another, drop the .woff2 in beside these and copy a
+ * block -- leaving it out means the browser synthesises the weight instead,
+ * which reads noticeably worse than the real cut.
+ *
+ * The unicode-range lines are Google's own, and they are what makes latin-ext
+ * free: the browser fetches it only if a character on the page falls inside
+ * that range, so it costs nothing until content needs it.
+ *
+ * Licence: SIL OFL 1.1, distributed alongside the files at public/fonts/OFL.txt.
+ */
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/chakra-petch-400-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/chakra-petch-400-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/chakra-petch-600-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/chakra-petch-600-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/*
  * Dark only, by design: this palette is built on neon-against-near-black
  * contrast, which has no meaningful light counterpart. There is deliberately
  * no prefers-color-scheme branch — forcing light must not change the page.
@@ -236,7 +300,13 @@ a {
   transition: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/*
+ * Neutralises the hidden state without the directive's help, which matters when
+ * a window is narrowed to phone width after the directive has already run and
+ * hidden an element. The directive may keep toggling reveal--visible; with this
+ * rule the element stays visible either way and never animates.
+ */
+@media (prefers-reduced-motion: reduce), (max-width: 600px) {
   .reveal {
     opacity: 1;
     transform: none;
@@ -367,6 +437,9 @@ a {
 .card-grid .banner {
   display: block;
   width: 100%;
+  /* Overrides the height attribute's presentational hint so the ratio below
+     governs; without it the card art is pinned to the attribute's pixels. */
+  height: auto;
   /* A header strip rather than a picture: keeps the card close to the height
      it had before the banner, so the summary and tags stay the focus. */
   aspect-ratio: 3 / 1;

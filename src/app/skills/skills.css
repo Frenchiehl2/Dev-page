@@ -1,11 +1,31 @@
 /*
  * Smaller cells than the projects grid, same auto-fit behaviour: as many
  * columns as fit, wrapping to new rows as skills are added.
+ *
+ * The min() is what stops a phone dropping to two columns. 140px is the
+ * preferred cell, but the floor is never more than a quarter of the row once
+ * the three gaps are taken out, so four always fit before anything wraps and
+ * narrower screens shrink the cells rather than the count. Twenty-two skills
+ * at two columns is eleven rows of scrolling; at four it is six.
+ *
+ * The explicit minimum also keeps the track off min-content, which a name with
+ * no break opportunity -- SystemVerilog -- would otherwise push past a quarter.
+ *
+ * Above roughly 700px 140px is the smaller of the two, so wide layouts resolve
+ * exactly as they did before this floor existed.
  */
 .grid {
+  --grid-gap: var(--space-md);
+  --min-tile: 140px;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--min-tile), (100% - 3 * var(--grid-gap)) / 4), 1fr)
+  );
+  /* Shares the custom property with the track calculation above, so the two
+     cannot drift apart when the phone tier retunes the gap. */
+  gap: var(--grid-gap);
   margin-top: var(--space-md);
   padding: 0;
   list-style: none;
@@ -29,6 +49,43 @@
 }
 
 .name {
-  font-size: 0.9rem;
+  /* Reaches the full 0.9rem at 600px, so desktop is unchanged; below that it
+     tracks the cell down. The 0.6rem floor is set by SystemVerilog, the only
+     name long enough to need two lines at four columns -- it measures 66px
+     against the 71px a 390px phone leaves inside a cell. */
+  font-size: clamp(0.6rem, 2.4vw, 0.9rem);
   font-weight: 500;
+  /* SystemVerilog has nowhere to break, so on a narrower phone than the tuning
+     below assumes it would spill out of the cell rather than wrap. */
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Four columns on a phone leaves each cell around 82px, which the desktop
+ * proportions do not fit: a 48px logo inside 1rem of side padding overflows,
+ * and a 14px notch eats most of an 82px corner.
+ */
+@media (max-width: 600px) {
+  .grid {
+    --grid-gap: var(--space-sm);
+  }
+
+  .tile {
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-xs);
+    --notch: 8px;
+  }
+
+  /* The global .notched::before re-declares its own --notch, so the inner
+     shape has to come down with it -- 0.6px shallower, as styles.css explains.
+     This selector is component-scoped and the global one is not, so it wins on
+     specificity without needing !important. */
+  .tile::before {
+    --notch: 7.4px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
 }

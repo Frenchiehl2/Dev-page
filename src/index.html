@@ -38,12 +38,21 @@
     <link rel="icon" type="image/webp" sizes="48x48" href="favicon.webp" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-    <!-- Display face for headings and controls; body copy stays on system-ui. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Display face for headings and controls; body copy stays on system-ui.
+         Served from this origin -- see the @font-face blocks at the top of
+         styles.css. Only the 600 cut is preloaded: every route carries headings
+         in it, while 400 is just the contact form's labels, so preloading that
+         too would sit unused on the project detail routes and warn.
+
+         crossorigin is required even same-origin: font fetches are CORS-mode,
+         and a preload without it counts as a different request, downloading the
+         file twice. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/chakra-petch-600-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
   </head>
   <body>

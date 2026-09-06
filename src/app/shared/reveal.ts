@@ -1,4 +1,5 @@
 import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject, input } from '@angular/core';
+import { PHONE, REDUCED_MOTION, matchesMedia } from './device';
 
 /** Delay between consecutive items in a staggered group. */
 const STAGGER_MS = 25;
@@ -20,8 +21,9 @@ const OFFSET_PX = 10;
  *   <li class="tile" [appReveal]="$index + 1">
  *
  * The hidden state is applied from script rather than sitting in the
- * stylesheet, so if this never runs — JS disabled, no IntersectionObserver —
- * the page still renders fully visible instead of blank.
+ * stylesheet, so if this never runs — JS disabled, no IntersectionObserver,
+ * a phone, reduced motion — the page still renders fully visible instead of
+ * blank. See shouldAnimate().
  */
 @Directive({
   selector: '[appReveal]',
@@ -144,12 +146,24 @@ export class Reveal implements OnInit, OnDestroy {
     el.classList.remove('reveal--no-transition');
   }
 
-  /** Skip entirely without IntersectionObserver, or when the OS asks for less motion. */
+  /**
+   * Skip entirely without IntersectionObserver, on a phone, or when the OS asks
+   * for less motion.
+   *
+   * Phones are excluded on cost rather than taste: an observer per revealed
+   * element, and a fade and slide every time any of them crosses the threshold,
+   * is a poor trade for the frame budget of a small device on a long scroll.
+   * Returning false here means the hidden class is never applied and no
+   * observer is built, so the content simply paints in place.
+   */
   private shouldAnimate(): boolean {
     if (typeof IntersectionObserver === 'undefined') {
       return false;
     }
-    return !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (matchesMedia(PHONE)) {
+      return false;
+    }
+    return !matchesMedia(REDUCED_MOTION);
   }
 }
 
