@@ -5,6 +5,31 @@ import { Home } from './home/home';
 import { SKILLS } from './skills/skills.data';
 import { Language } from './shared/language';
 import { UI_TEXT } from './shared/ui-text';
+import { DOWNLOADS } from './downloads/downloads.data';
+import { SHOWCASE } from './showcase/showcase.data';
+
+/*
+ * The Downloads section hides itself while it has no entries, so its heading is
+ * only in the page once downloads.data.ts is populated. Deriving it here keeps
+ * these expectations correct in both states — adding the first download should
+ * not fail an unrelated test.
+ */
+function expectedHeadings(lang: 'en' | 'de'): string[] {
+  const t = UI_TEXT[lang];
+  return [
+    t.overview,
+    t.skills,
+    t.commercialReleases,
+    t.projects,
+    ...(SHOWCASE.length ? [t.showcase] : []),
+    t.experience,
+    t.education,
+    t.certificates,
+    ...(DOWNLOADS.length ? [t.downloads] : []),
+    t.contact,
+    t.findMeOnline,
+  ];
+}
 
 describe('App', () => {
   beforeEach(async () => {
@@ -63,16 +88,7 @@ describe('Home', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     const headings = [...compiled.querySelectorAll('section > h2')].map((h) => h.textContent);
-    expect(headings).toEqual([
-      'Overview',
-      'Skills',
-      'Commercial Releases',
-      'Projects',
-      'Practical Experience',
-      'Education',
-      'Contact',
-      'Find me online',
-    ]);
+    expect(headings).toEqual(expectedHeadings('en'));
   });
 
   it('should link each project card to its detail route', async () => {
@@ -81,8 +97,8 @@ describe('Home', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     // Scoped to .projects: Commercial Releases renders the same card markup.
     const cards = compiled.querySelectorAll('.projects a.card');
-    expect(cards.length).toBe(3);
-    expect(cards[0].getAttribute('href')).toBe('/projects/tideline');
+    expect(cards.length).toBe(8);
+    expect(cards[0].getAttribute('href')).toBe('/projects/local-llm');
   });
 
   it('switches every heading and the article content to German', async () => {
@@ -91,34 +107,16 @@ describe('Home', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     const headings = () => [...compiled.querySelectorAll('section > h2')].map((h) => h.textContent);
-    expect(headings()).toEqual([
-      UI_TEXT.en.overview,
-      UI_TEXT.en.skills,
-      UI_TEXT.en.commercialReleases,
-      UI_TEXT.en.projects,
-      UI_TEXT.en.experience,
-      UI_TEXT.en.education,
-      UI_TEXT.en.contact,
-      UI_TEXT.en.findMeOnline,
-    ]);
+    expect(headings()).toEqual(expectedHeadings('en'));
 
     TestBed.inject(Language).set('de');
     await fixture.whenStable();
 
     // Chrome switched...
-    expect(headings()).toEqual([
-      UI_TEXT.de.overview,
-      UI_TEXT.de.skills,
-      UI_TEXT.de.commercialReleases,
-      UI_TEXT.de.projects,
-      UI_TEXT.de.experience,
-      UI_TEXT.de.education,
-      UI_TEXT.de.contact,
-      UI_TEXT.de.findMeOnline,
-    ]);
+    expect(headings()).toEqual(expectedHeadings('de'));
     // ...and so did the article content underneath it.
     expect(compiled.querySelector('.role .org')?.textContent).toContain('Rotterdam');
-    expect(compiled.querySelector('.projects .card p')?.textContent).toContain('selbst gehostetes');
+    expect(compiled.querySelector('.projects .card p')?.textContent).toContain('Inferenz-Rechner');
     expect(compiled.querySelector('.entry h3')?.textContent).toContain('M.Sc.');
   });
 

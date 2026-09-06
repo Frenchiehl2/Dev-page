@@ -1,0 +1,19 @@
+<section class="certificates" aria-labelledby="certificates-heading">
+  <h2 id="certificates-heading" appReveal>{{ t().certificates }}</h2>
+
+  <ul class="entries">
+    @for (certificate of certificates(); track certificate.slug) {
+      <li class="entry" [appReveal]="$index + 1">
+        <div class="entry-head">
+          <h3>{{ certificate.name }}</h3>
+          <span class="dates">{{ certificate.date }}</span>
+        </div>
+        <p class="org">{{ certificate.issuer }}</p>
+        <div
+          class="markdown-body markdown-body--tight"
+          [innerHTML]="certificate.body | markdown"
+        ></div>
+      </li>
+    }
+  </ul>
+</section>

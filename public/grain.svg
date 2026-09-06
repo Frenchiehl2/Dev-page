@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <filter id="grain">
+    <!-- stitchTiles keeps the noise seamless where the tile repeats. -->
+    <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <!-- Softens the speckle. Baked into the tile, so it costs nothing at runtime,
+         unlike a CSS filter which would re-run on every repaint of the boil. -->
+    <feGaussianBlur stdDeviation="0.6"/>
+  </filter>
+  <rect width="200" height="200" filter="url(#grain)"/>
+</svg>

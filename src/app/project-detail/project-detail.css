@@ -1,12 +1,45 @@
 /* Wider crop than the card uses, from the same source image. */
+/*
+ * The frame is a gradient behind 2px of padding, with the image clipped 2px
+ * inside it, so the colour reads as a border on every edge including the two
+ * diagonals. The .notched recipe cannot be reused here: it draws its border on
+ * a ::before, and <img> is a replaced element that never renders one.
+ *
+ * Corners cut on the same diagonal as the masthead portrait.
+ */
+.hero-frame {
+  margin-bottom: var(--space-lg);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
+  /* Deeper than the portrait's 14px: this spans the full column, about five
+     times wider, where that depth would read as a chip rather than a chamfer. */
+  --notch: 26px;
+  clip-path: var(--notch-clip-alt);
+}
+
 .hero {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 1;
   object-fit: cover;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: var(--space-lg);
+  /* The frame paints the glitch gradient behind this image, so a banner with
+     alpha needs its own ground or the gradient reads through the artwork. */
+  background: var(--bg);
+  /* 1.2px shallower so the frame stays 2px around the cuts too: a 2px inset
+     displaces a 45deg line by 2*sqrt2, so the inner notch loses 2*(2 - sqrt2). */
+  --notch: 24.8px;
+  clip-path: var(--notch-clip-alt);
+}
+
+/* The column narrows to roughly 350px here, where 26px would eat the corner. */
+@media (max-width: 600px) {
+  .hero-frame {
+    --notch: 16px;
+  }
+
+  .hero {
+    --notch: 14.8px;
+  }
 }
 
 .detail-head {
@@ -40,7 +73,7 @@
   padding: 0.15rem 0.5rem;
   background: var(--tag-bg);
   color: var(--tag-text);
-  border-radius: 999px;
+  border-radius: var(--radius);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -70,14 +103,14 @@
   margin-bottom: var(--space-lg);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: var(--radius);
   color: var(--accent);
   text-decoration: none;
   transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    stroke 200ms ease,
-    color 200ms ease;
+    background-color var(--transition),
+    border-color var(--transition),
+    stroke var(--transition),
+    color var(--transition);
 }
 
 /* stroke="currentColor" in the markup, so the icon follows .back's color. */
@@ -90,7 +123,7 @@
 .back:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--bg);
 }
 
 .back:focus-visible {
@@ -102,4 +135,34 @@
   .back {
     transition: none;
   }
+}
+
+/* Outbound link to the repository or product page, under the tags. */
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.source:hover {
+  text-decoration: underline;
+}
+
+.source:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.source-arrow {
+  display: block;
+  width: 14px;
+  height: 14px;
 }

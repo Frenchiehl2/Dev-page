@@ -1,7 +1,7 @@
 ---
-degree: BSc, Software Engineering
-institution: Hogeschool Rotterdam
-dates: 2012 – 2015
+degree: B.Sc., Software Engineering
+institution: University of Applied Sciences Darmstadt
+dates: 02/2024 - Present
 ---
 
-Graduated cum laude. Final project was a scheduling tool still in use by the department.
+Set to graduate in the near future.

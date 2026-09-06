@@ -12,6 +12,79 @@
   padding: calc(var(--space-xl) + var(--space-md)) var(--space-xl) var(--space-xl);
 }
 
+/*
+ * Film grain, the last of the backdrop layers (styles.css has the rest:
+ * body::before carries the grid and glows, body::after the orange head band).
+ *
+ * It hangs off .page rather than the body because .page's box is the whole
+ * document, and the vertical fade has to be document-relative to line up with
+ * those bands — a fixed layer's mask would track the viewport edges instead.
+ * .page is also rendered on every route, which is what makes this shared.
+ */
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Full-bleed past the 1240px column; body's overflow-x: clip absorbs the
+     scrollbar-width overhang, as it does for the home page's foot. */
+  margin-inline: calc(50% - 50vw);
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background: url('/grain.svg') repeat;
+  /* Drawn above the tile's intrinsic 200px, which enlarges the grain and adds
+     a second, seam-free softening: the browser interpolates as it upscales. */
+  background-size: 260px 260px;
+  /* Clear at both ends, so the orange head and yellow foot stay clean. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  animation: grain-boil var(--grain-cycle) steps(1) infinite;
+}
+
+/*
+ * Shifts the repeating tile to a different patch of noise on each step, which
+ * is what makes the grain re-randomise rather than hold still. steps(1) holds
+ * each offset and jumps between them; interpolating would slide the grain
+ * across the screen instead. The offsets are deliberately not multiples of the
+ * 200px tile, so no two steps land on the same patch.
+ */
+@keyframes grain-boil {
+  0% {
+    background-position: 0 0;
+  }
+  12.5% {
+    background-position: -37px 13px;
+  }
+  25% {
+    background-position: 61px -29px;
+  }
+  37.5% {
+    background-position: -19px 47px;
+  }
+  50% {
+    background-position: 43px 31px;
+  }
+  62.5% {
+    background-position: -53px -11px;
+  }
+  75% {
+    background-position: 23px -43px;
+  }
+  87.5% {
+    background-position: -67px 19px;
+  }
+}
+
+/*
+ * A full-viewport texture changing 13 times a second is exactly what this
+ * setting exists to suppress. The grain stays, simply held still.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .page::after {
+    animation: none;
+  }
+}
+
 /* Pinned to the page corner so it is reachable on every route. */
 app-language-selector {
   position: absolute;

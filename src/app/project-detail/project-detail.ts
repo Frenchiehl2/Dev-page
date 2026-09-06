@@ -36,6 +36,14 @@ export class ProjectDetail {
   private readonly language = inject(Language);
 
   protected readonly t = computed(() => UI_TEXT[this.language.current()]);
+  /**
+   * Projects link to a repository, commercial releases to a product page. The
+   * collection input already says which this is, so no extra plumbing.
+   */
+  protected readonly linkLabel = computed(() =>
+    this.collection() === 'projects' ? this.t().viewRepository : this.t().visitSite,
+  );
+
   protected readonly project = computed(() =>
     COLLECTIONS[this.collection()][this.language.current()].find((p) => p.slug === this.slug()),
   );

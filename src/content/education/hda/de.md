@@ -1,7 +1,7 @@
 ---
 degree: B.Sc. Software Engineering
-institution: Hogeschool Rotterdam
-dates: 2012 – 2015
+institution: Hochschule-Darmstadt h_da
+dates: 02/2024 - Heute
 ---
 
-Mit Auszeichnung abgeschlossen. Die Abschlussarbeit war ein Planungswerkzeug, das im Fachbereich bis heute genutzt wird.
+Wird in Kürze seinen Abschluss machen.

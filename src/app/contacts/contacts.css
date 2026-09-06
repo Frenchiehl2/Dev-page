@@ -27,38 +27,42 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-md) var(--space-sm);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  /* Shape, border layer and surface fill come from the global .notched rule. */
   color: inherit;
   text-align: center;
   text-decoration: none;
   transition:
-    transform 120ms ease,
-    border-color 120ms ease,
-    box-shadow 120ms ease;
+    transform var(--transition),
+    background var(--transition),
+    filter var(--transition);
 }
 
 .tile:hover {
-  border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+  background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
+  /* drop-shadow, not box-shadow: filters apply after the clip, so the glow
+     traces the angled silhouette instead of being clipped away with it. */
+  filter: drop-shadow(-3px -3px 0 rgb(254 84 182 / 25%))
+    drop-shadow(3px 3px 0 rgb(131 246 226 / 25%));
 }
 
 .tile:active {
   transform: translateY(0);
-  box-shadow: none;
+  filter: none;
 }
 
+/* outline is clipped away by clip-path, so focus is rebuilt from the border
+   layer plus a glow. Both change together, which keeps it unmistakable. */
 .tile:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline: none;
+  background: var(--accent);
+  filter: drop-shadow(0 0 6px rgb(255 140 18 / 60%));
 }
 
 .logo {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: var(--radius);
   object-fit: contain;
 }
 

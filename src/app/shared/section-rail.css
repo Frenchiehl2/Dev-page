@@ -1,0 +1,100 @@
+/*
+ * Pinned to the left edge and vertically centred, so it stays in view while the
+ * page scrolls. z-index 2 puts it above content and above the language selector
+ * pinned in the opposite corner at z-index 1.
+ */
+:host {
+  position: fixed;
+  top: 50%;
+  left: var(--space-md);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+/*
+ * There is no gutter to live in at narrower widths — the content column is
+ * 1240px — and a rail lying over the text is worse than no rail.
+ */
+@media (max-width: 1100px) {
+  :host {
+    display: none;
+  }
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.tick {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.35rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  /* The label is what changes width; keep the ticks left-aligned regardless. */
+  justify-content: flex-start;
+}
+
+.tick:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* The tick itself: short and dim, longer and accent when it is the current one. */
+.mark {
+  display: block;
+  width: 14px;
+  height: 2px;
+  background: var(--text-muted);
+  opacity: 0.5;
+  transition:
+    width var(--transition),
+    background-color var(--transition),
+    opacity var(--transition);
+}
+
+.tick:hover .mark {
+  opacity: 1;
+}
+
+.tick.is-active .mark {
+  width: 28px;
+  background: var(--accent);
+  opacity: 1;
+}
+
+/*
+ * Only the current section is named. The chip keeps it readable where the
+ * gutter is thin enough that it overlaps the page's left padding.
+ */
+.label {
+  padding: 0.1rem 0.4rem;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--transition);
+  /* Never intercepts a click meant for the tick. */
+  pointer-events: none;
+}
+
+.tick.is-active .label,
+.tick:hover .label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .label {
+    transition: none;
+  }
+}

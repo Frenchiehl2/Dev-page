@@ -12,19 +12,19 @@ describe('ProjectDetail routing', () => {
 
   it('renders the project matching the :slug route param', async () => {
     const harness = await RouterTestingHarness.create();
-    await harness.navigateByUrl('/projects/palletjack');
+    await harness.navigateByUrl('/projects/vulkan-renderer');
 
     const text = (harness.routeNativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('Palletjack');
-    expect(text).toContain('Lead developer');
+    expect(text).toContain('Vulkan Renderer');
+    expect(text).toContain('Sole author');
     // Detail-page-only content: a highlight, which never appears on the card.
-    expect(text).toContain('Content-addressed keys');
-    expect(text).not.toContain('Tideline');
+    expect(text).toContain('surface-mesh handling');
+    expect(text).not.toContain('Pizza Service');
   });
 
   it('renders the Markdown body as HTML rather than escaped text', async () => {
     const harness = await RouterTestingHarness.create();
-    await harness.navigateByUrl('/projects/palletjack');
+    await harness.navigateByUrl('/projects/vulkan-renderer');
 
     const body = (harness.routeNativeElement as HTMLElement).querySelector('.markdown-body');
     expect(body).toBeTruthy();

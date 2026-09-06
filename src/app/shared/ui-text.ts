@@ -12,8 +12,11 @@ export interface UiText {
   skills: string;
   commercialReleases: string;
   projects: string;
+  showcase: string;
   experience: string;
   education: string;
+  certificates: string;
+  downloads: string;
   contact: string;
   contactIntro: string;
   subjectLabel: string;
@@ -27,25 +30,33 @@ export interface UiText {
   email: string;
   viewProject: string;
   viewRelease: string;
+  viewRepository: string;
+  visitSite: string;
   technologiesUsed: string;
   backToProfile: string;
   projectNotFound: string;
   noProjectMatching: (slug: string) => string;
+  playVideo: (title: string) => string;
   languageToggle: string;
+  sections: string;
 }
 
 export const UI_TEXT: Record<Lang, UiText> = {
   en: {
-    role: 'Full-Stack Developer',
-    tagline: 'Building maintainable web applications in TypeScript, mostly with Angular.',
+    role: 'Software and systems engineer',
+    tagline: 'Building maintainable software and systems with full proof design.',
     overview: 'Overview',
     skills: 'Skills',
     commercialReleases: 'Commercial Releases',
     projects: 'Projects',
+    showcase: 'Showcase',
     experience: 'Practical Experience',
     education: 'Education',
+    certificates: 'Certificates',
+    downloads: 'Downloads',
     contact: 'Contact',
-    contactIntro: 'Write a message below and press send — it opens in your own mail app, addressed to me.',
+    contactIntro:
+      'Write a message below and press send — it opens in your own mail app, addressed to me.',
     subjectLabel: 'Subject',
     messageLabel: 'Message',
     sendMessage: 'Send message',
@@ -57,21 +68,28 @@ export const UI_TEXT: Record<Lang, UiText> = {
     email: 'Email',
     viewProject: 'View project →',
     viewRelease: 'View release →',
+    viewRepository: 'View repository',
+    visitSite: 'Visit site',
     technologiesUsed: 'Technologies used',
     backToProfile: 'Back to profile',
     projectNotFound: 'Project not found',
     noProjectMatching: (slug) => `There is no project matching “${slug}”.`,
+    playVideo: (title) => `Play: ${title}`,
     languageToggle: 'Language: English. Switch to German.',
+    sections: 'Sections',
   },
   de: {
-    role: 'Full-Stack-Entwickler',
-    tagline: 'Wartbare Webanwendungen in TypeScript, meist mit Angular.',
+    role: 'Software- und Systemingenieur',
+    tagline: 'Entwicklung wartbarer Software und Systeme mit einem absolut zuverlässigen Design.',
     overview: 'Überblick',
     skills: 'Fähigkeiten',
     commercialReleases: 'Kommerzielle Veröffentlichungen',
     projects: 'Projekte',
+    showcase: 'Showcase',
     experience: 'Praktische Erfahrung',
     education: 'Ausbildung',
+    certificates: 'Zertifikate',
+    downloads: 'Downloads',
     contact: 'Kontakt',
     contactIntro:
       'Schreiben Sie unten eine Nachricht und klicken Sie auf Senden — sie öffnet sich in Ihrem eigenen E-Mail-Programm, an mich adressiert.',
@@ -86,10 +104,14 @@ export const UI_TEXT: Record<Lang, UiText> = {
     email: 'E-Mail',
     viewProject: 'Projekt ansehen →',
     viewRelease: 'Release ansehen →',
+    viewRepository: 'Repository ansehen',
+    visitSite: 'Website besuchen',
     technologiesUsed: 'Verwendete Technologien',
     backToProfile: 'Zurück zum Profil',
     projectNotFound: 'Projekt nicht gefunden',
     noProjectMatching: (slug) => `Es gibt kein Projekt mit dem Namen „${slug}“.`,
+    playVideo: (title) => `Abspielen: ${title}`,
     languageToggle: 'Sprache: Deutsch. Zu Englisch wechseln.',
+    sections: 'Abschnitte',
   },
 };

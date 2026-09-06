@@ -1,0 +1,94 @@
+/*
+ * Same tile treatment as the Find me online grid. Kept scoped rather than
+ * shared with it: only the box overlaps, and this one carries an inline icon
+ * and a metadata line instead of a logo image.
+ *
+ * Plain auto-fit rather than the fixed-width cells that section uses, because
+ * this list is meant to be appended to and should reflow for any count.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+/* Grid cell wrapping each tile; carries the scroll reveal (see downloads.html). */
+.cell {
+  display: flex;
+}
+
+.tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--space-sm);
+  /* Shape, border layer and surface fill come from the global .notched rule. */
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    filter var(--transition);
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
+  /* drop-shadow, not box-shadow: filters apply after the clip, so the glow
+     traces the angled silhouette instead of being clipped away with it. */
+  filter: drop-shadow(-3px -3px 0 rgb(254 84 182 / 25%))
+    drop-shadow(3px 3px 0 rgb(131 246 226 / 25%));
+}
+
+.tile:active {
+  transform: translateY(0);
+  filter: none;
+}
+
+/* outline is clipped away by clip-path, so focus is rebuilt from the border
+   layer plus a glow. Both change together, which keeps it unmistakable. */
+.tile:focus-visible {
+  outline: none;
+  background: var(--accent);
+  filter: drop-shadow(0 0 6px rgb(255 140 18 / 60%));
+}
+
+/* stroke="currentColor" in the markup, so the glyph follows this colour. */
+.icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-bottom: var(--space-xs);
+  color: var(--accent);
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.tile:hover .name {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+}

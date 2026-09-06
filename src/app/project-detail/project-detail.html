@@ -27,8 +27,12 @@
 @if (project(); as project) {
   <ng-container [ngTemplateOutlet]="backLink" />
   <article class="detail">
-    <!-- alt="" : decorative, the title follows immediately below. -->
-    <img class="hero" [src]="project.banner" alt="" width="650" height="450" appReveal />
+    <!-- The reveal sits on the frame, so the image and its border fade in as
+         one unit rather than the picture appearing inside a frame already there. -->
+    <div class="hero-frame" appReveal>
+      <!-- alt="" : decorative, the title follows immediately below. -->
+      <img class="hero" [src]="project.banner" alt="" width="650" height="450" />
+    </div>
 
     <header class="detail-head" [appReveal]="1">
       <h1>{{ project.title }}</h1>
@@ -38,6 +42,25 @@
           <li>{{ tag }}</li>
         }
       </ul>
+
+      <!-- Only when the entry has somewhere to point; url is optional. -->
+      @if (project.url) {
+        <a class="source" [href]="project.url" target="_blank" rel="noopener noreferrer">
+          <svg
+            class="source-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17 17 7M9 7h8v8" />
+          </svg>
+          {{ linkLabel() }}
+        </a>
+      }
     </header>
 
     <div class="markdown-body" [appReveal]="2" [innerHTML]="project.body | markdown"></div>

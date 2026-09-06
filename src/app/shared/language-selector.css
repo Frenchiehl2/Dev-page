@@ -4,7 +4,7 @@
   border: 0;
   background: none;
   cursor: pointer;
-  border-radius: 999px;
+  border-radius: var(--radius);
 }
 
 .switch:focus-visible {
@@ -19,7 +19,7 @@
   height: 26px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--radius);
   transition: border-color 250ms ease;
 }
 
@@ -37,8 +37,8 @@
   width: 30px;
   height: 22px;
   background: var(--accent);
-  color: #fff;
-  border-radius: 999px;
+  color: var(--bg);
+  border-radius: var(--radius);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;

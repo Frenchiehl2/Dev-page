@@ -49,9 +49,7 @@ function parseValue(raw: string): string | string[] {
 export function parseFrontmatter(source: string, label = 'content'): Frontmatter {
   const match = FRONTMATTER_BLOCK.exec(source);
   if (!match) {
-    throw new Error(
-      `${label}: missing frontmatter. Expected the file to open with a '---' block.`,
-    );
+    throw new Error(`${label}: missing frontmatter. Expected the file to open with a '---' block.`);
   }
 
   const data: Record<string, string | string[]> = {};
@@ -88,6 +86,20 @@ export function requireString(
     throw new Error(`${label}: frontmatter is missing a '${key}' string.`);
   }
   return value;
+}
+
+/**
+ * Reads an optional string field, returning undefined when it is absent.
+ *
+ * The require* helpers above both throw, which is right for fields every entry
+ * must carry. This is for ones an entry may legitimately lack.
+ */
+export function optionalString(
+  data: Record<string, string | string[]>,
+  key: string,
+): string | undefined {
+  const value = data[key];
+  return typeof value === 'string' && value !== '' ? value : undefined;
 }
 
 /** Reads a required list field, failing loudly if it is missing or the wrong shape. */
