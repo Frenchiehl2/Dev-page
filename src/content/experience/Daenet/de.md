@@ -1,6 +1,6 @@
 ---
 title: Softwareentwickler
-company: Daenet Gmbh
+company: Daenet GmbH
 location: Frankfurt
 dates: 06/2019 – 08/2019
 ---

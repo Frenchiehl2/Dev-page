@@ -18,7 +18,7 @@ Models come from Hugging Face and are managed either outside the container or wi
  Docker Scripts can either be ran or copied into the terminal, simply download and run the desired version for your setup, fill in the fields if required
 
  -<code>llama-vulkan.sh</code> for multi GPU setup<br>
-  -<code>llama-rcom.sh</code> for single GPU setup<br>
+  -<code>llama-rocm.sh</code> for single GPU setup<br>
   -<code>docker-start.sh</code> should be put as an autostart in case the machine will be powered on and off frequently<br>
 
 

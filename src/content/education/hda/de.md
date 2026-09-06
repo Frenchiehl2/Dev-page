@@ -1,6 +1,6 @@
 ---
-degree: Bs.c Software engineering
-institution: Hockschule-Darmstadt h_da
+degree: B.Sc. Software Engineering
+institution: Hochschule-Darmstadt h_da
 dates: 02/2024 - Heute
 ---
 

@@ -4,4 +4,4 @@ issuer: CISCO
 date: 2019
 ---
 
-Cisco program aimed to test and evaluate Essential netwoking skills and understanding of computer architecture.
+Cisco program aimed to test and evaluate Essential networking skills and understanding of computer architecture.

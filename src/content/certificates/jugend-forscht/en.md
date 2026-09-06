@@ -1,6 +1,6 @@
 ---
 name: Certificate of presentation
-issuer: Jugend forscht Rhein-mein
+issuer: Jugend forscht Rhein-Main
 date: 2021
 ---
 

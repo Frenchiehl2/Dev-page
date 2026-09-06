@@ -19,7 +19,7 @@ außerhalb des Containers oder in ihm verwaltet.
  Docker-Skripte können entweder im Terminal ausgeführt oder dorthin kopiert werden. Laden Sie einfach die für Ihre Konfiguration gewünschte Version herunter und führen Sie sie aus. Füllen Sie gegebenenfalls die Felder aus.
 
   -<code>llama-vulkan.sh</code> für Multi-GPU-Konfigurationen<br>
-  -<code>llama-rcom.sh</code> für eine Konfiguration mit einer einzigen GPU<br>
+  -<code>llama-rocm.sh</code> für eine Konfiguration mit einer einzigen GPU<br>
   -<code>docker-start.sh</code>sollte als Autostart eingerichtet werden, falls der Rechner häufig ein- und ausgeschaltet wird<br>
 
 Sie können über folgenden Befehl auf den Docker-Container zugreifen:

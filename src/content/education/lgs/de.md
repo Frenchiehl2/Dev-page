@@ -1,5 +1,5 @@
 ---
 degree: Staatlich anerkannter Netzwerktechniker
-institution: Landrat-Guber-schule Dieburg
+institution: Landrat-Gruber-Schule Dieburg
 dates: 08/2018 - 05/2020
 ---

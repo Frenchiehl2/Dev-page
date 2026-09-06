@@ -7,24 +7,24 @@ year: 2026
 url: https://bitegameworks.net/
 ---
 
-Rust and Ruin is the first title from BITE Gameworks, an international group founded in 2024. It is
-a roguelite built around mech combat in a world where the machinery never stopped running, and a run
-drops the pilot into procedurally generated terrain with one instruction — push through what is left
-of it and reclaim what was lost.
+Rust and Ruin is the first title from BITE Gameworks, an international group founded in 2025.
 
-The combat takes after Synthetic and Helldivers 1 rather than the bullet-hell end of the genre. It
-is readable and deliberate, and the tension comes from committing to a build early and living with
-that choice for the rest of the run. Weapons and upgrades are salvaged on the way through; the mech
-itself keeps its patterns and colours between runs, so what persists is the pilot's identity rather
-than their loadout.
+Rust and Ruin is a dynamic roguelite game that blends intense action and strategic decision-making. Traverse through a gauntlet of runaway machinery, inspired by Synthetic and Helldivers 1,
 
-A playable demo is out now on itch.io, and the studio site collects the trailers and devlogs
+a swarm of rust seeking to test your steel, explore the environment of the old world that lies in ruin and reclaim what was lost. Upgrade your arsenal, challenge bosses and complete a variety of objectives in the name of reclamation. 
+
+A playable version is out now on itch.io, and the studio site collects the trailers and devlogs
 alongside it.
 
 <a href="https://bitegameworks.itch.io/rust-and-ruin" target="_blank" rel="noopener">Itch.io</a>   
 
+As a first release it was a great opportunity to develop, learn and experience the full software lifecycle. 
+
+With fast feedback from playtesters and continuous development it really showed us how software development is done and what structure it required, many challenges we had to consider that otherwise would never cross our minds as software developers.
+
 ## Highlights
 
-- Online co-op, so a run can be shared rather than soloed.
-- Procedural maps with varied enemy and boss rotations, so no two runs open the same way.
-- Per-run weapon and upgrade customisation, set against cosmetic mech customisation that carries over.
+ - Data analysis
+ - customer feedback and data collection
+ - performance and hardware considerations
+ - Networking and online play

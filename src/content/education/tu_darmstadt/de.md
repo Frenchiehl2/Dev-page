@@ -1,5 +1,5 @@
 ---
-degree: BS.c, Informatik
+degree: B.Sc., Informatik
 institution: Technische Universität Darmstadt
 dates: 09/2021 - 08/2023
 ---

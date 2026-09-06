@@ -1,6 +1,6 @@
 ---
 title: Network Administrator
-company: Radiological center
+company: Radiological Center
 location: Offenbach - Dietzenbach
 dates: 09/2023 – 05/2025
 ---

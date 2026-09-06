@@ -15,7 +15,7 @@ The bar keeps the state of individual windows, so one that has been put away com
 was. Icons and windows drag freely, and windows resize the way they would in any desktop.
 
 Building must be done in the  <b>"Desktop"</b> directory
-use <code>npm install</code> to install any other aditional packadges
+use <code>npm install</code> to install any other additional packages
 install angular: <code>npm install @angular/cli</code>
 serve the website: <code>ng serve</code>
 

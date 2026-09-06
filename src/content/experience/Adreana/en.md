@@ -1,6 +1,6 @@
 ---
 title: Software Developer
-company: Adreana Objects Gmbh
+company: Adreana Objects GmbH
 location: Darmstadt
 dates: 09/2024 - 11/2024
 ---

@@ -1,9 +1,9 @@
 ---
 title: Spieleentwickler
 company: Bite Gameworks UG
-location: Munster(Hessen)
+location: Münster (Hessen)
 dates: 05/2025 - Heute
 ---
 
 - Entwicklung und Veröffentlichung eines kommerziellen Spiels.
-- Haupt Designer für interaktive Systeme und Spielelemente.
+- Hauptdesigner für interaktive Systeme und Spielelemente.

@@ -10,7 +10,7 @@ url: https://github.com/Frenchiehl2/Vulkan-renderer
 Shaders, textures and surface meshes are handled and can be applied to any 2D surface.
 Transformations and function interpolation behave as intended.
 
-Work is now shifted into making it a fully vulkan backed rendering and Game engine.
+Work is now shifted into making it a fully Vulkan backed rendering and Game engine.
 
 ## Highlights
 

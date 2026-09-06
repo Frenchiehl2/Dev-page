@@ -1,7 +1,7 @@
 ---
 title: Game Developer
 company: Bite Gameworks UG
-location: Munster (Hessen)
+location: Münster (Hessen)
 dates: 05/2025 - Present
 ---
 

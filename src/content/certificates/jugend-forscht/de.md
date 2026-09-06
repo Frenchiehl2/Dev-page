@@ -1,6 +1,6 @@
 ---
-name: Urkunde fur projekt presentation
-issuer: Jugend forscht Rhein-mein
+name: Urkunde für Projektpräsentation
+issuer: Jugend forscht Rhein-Main
 date: 2021
 ---
 

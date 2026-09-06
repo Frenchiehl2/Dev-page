@@ -1,6 +1,6 @@
 ---
 degree: Realschule
-institution: Geschwister-Scholl-Schulle Alsfeld
-dates: 09/2025 – 08/2018
+institution: Geschwister-Scholl-Schule Alsfeld
+dates: 09/2015 – 08/2018
 ---
 
