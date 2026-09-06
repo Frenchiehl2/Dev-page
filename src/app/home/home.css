@@ -24,7 +24,7 @@
 .portrait-frame {
   flex: none;
   margin-top: 20px;
-  padding: 2px;
+  padding: 1px;
   background: linear-gradient(135deg, var(--glitch-1) 0 50%, var(--glitch-2) 50% 100%);
   clip-path: var(--notch-clip-alt);
 }
