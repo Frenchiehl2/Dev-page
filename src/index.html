@@ -5,11 +5,39 @@
     <title>AleksaL.dev</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="Project Portfolio" />
+    <meta name="keywords" content="HTML, CSS, TypeScript, Portfolio, Projects" />
+    <meta name="author" content="Aleksa Lukic" />
+    <link rel="canonical" href="https://aleksal.dev/" />
+
     <!-- Matches --bg, so mobile browser chrome does not flash white. -->
     <meta name="theme-color" content="#050505" />
-    <!-- SVG first for browsers that take it; the .ico is the fallback. -->
+
+    <!-- Open Graph: drives the link preview card on Discord, Slack, iMessage, LinkedIn.
+         Absolute URLs are required here; scrapers do not resolve relative paths. -->
+    <meta property="og:site_name" content="Project Portfolio" />
+    <meta property="og:title" content="Menagerie of my most memorable makings" />
+    <meta
+      property="og:description"
+      content="Learn by doing, a centralized way to display the recent and most interesting projects I got my hands dirty with"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aleksal.dev/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:image" content="https://aleksal.dev/favicon.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content="AleksaL.dev icon" />
+
+    <meta name="twitter:card" content="summary" />
+
+    <!-- SVG first for browsers that take it, WebP for servers that will not serve
+         image/svg+xml, and the .ico as the universal floor. -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/webp" sizes="48x48" href="favicon.webp" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
     <!-- Display face for headings and controls; body copy stays on system-ui. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -97,8 +97,8 @@ describe('Home', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     // Scoped to .projects: Commercial Releases renders the same card markup.
     const cards = compiled.querySelectorAll('.projects a.card');
-    expect(cards.length).toBe(8);
-    expect(cards[0].getAttribute('href')).toBe('/projects/local-llm');
+    expect(cards.length).toBe(9);
+    expect(cards[0].getAttribute('href')).toBe('/projects/dev-page');
   });
 
   it('switches every heading and the article content to German', async () => {

@@ -1,4 +1,5 @@
 import { WorkEntry, loadWorkEntries } from '../content/work-entry';
+import devPage from '../../content/projects/dev-page';
 import localLlm from '../../content/projects/local-llm';
 import desktopLikeWebsite from '../../content/projects/desktop-like-website';
 import webglEditor from '../../content/projects/webgl-editor';
@@ -23,6 +24,7 @@ export type Project = WorkEntry;
  * explicit.
  */
 const SOURCES = {
+  'dev-page': devPage,
   'local-llm': localLlm,
   'desktop-like-website': desktopLikeWebsite,
   'webgl-editor': webglEditor,
