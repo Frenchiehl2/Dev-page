@@ -9,7 +9,7 @@ url: https://github.com/Frenchiehl2/WebGL-Editor
 
 Ein Editor, um Modelle unmittelbar in einer Webseite zu bearbeiten. Im Mittelpunkt steht dabei der
 Versuch, nicht das Werkzeug: wie viel Renderarbeit sich auf die GPU verlagern lässt, bevor der
-Browser zur Grenze wird — und wie gut Web-Grafik dann aussehen kann.
+Browser zur Grenze wird , und wie gut Web-Grafik dann aussehen kann.
 
 ## Highlights
 

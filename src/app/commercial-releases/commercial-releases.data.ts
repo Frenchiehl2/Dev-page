@@ -1,7 +1,7 @@
 import { WorkEntry, loadWorkEntries } from '../content/work-entry';
 import rustAndRuin from '../../content/commercial-releases/rust-and-ruin';
 
-/** A shipped commercial release. Same shape as a project — see WorkEntry. */
+/** A shipped commercial release. Same shape as a project , see WorkEntry. */
 export type CommercialRelease = WorkEntry;
 
 /**

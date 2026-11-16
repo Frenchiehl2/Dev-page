@@ -11,7 +11,7 @@ export interface Role {
   company: string;
   location: string;
   dates: string;
-  /** Raw Markdown body — the responsibility bullets. */
+  /** Raw Markdown body , the responsibility bullets. */
   body: string;
 }
 

@@ -9,7 +9,7 @@ import { SHOWCASE } from './showcase.data';
  * A YouTube id: exactly 11 characters of the URL-safe alphabet.
  *
  * Building an iframe URL needs bypassSecurityTrustResourceUrl, which is a
- * sanitiser bypass — so the id is checked first. The list is ours today, but a
+ * sanitiser bypass , so the id is checked first. The list is ours today, but a
  * bypass that only ever sees well-formed input is the version that stays safe
  * if that stops being true.
  */

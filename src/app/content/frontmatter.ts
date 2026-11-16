@@ -13,7 +13,7 @@
  * Values run to the end of the line. Surrounding single or double quotes are
  * stripped. Inline `[a, b]` arrays become string arrays; their items may be
  * quoted too. Comments, nested maps, multi-line values and `- ` block lists
- * are not supported — use the Markdown body for anything structural.
+ * are not supported , use the Markdown body for anything structural.
  *
  * Anything malformed throws, so a typo in a content file fails loudly at
  * startup rather than rendering a silently empty page.
@@ -61,12 +61,12 @@ export function parseFrontmatter(source: string, label = 'content'): Frontmatter
 
     const separator = line.indexOf(':');
     if (separator === -1) {
-      throw new Error(`${label}: frontmatter line is not 'key: value' — ${line.trim()}`);
+      throw new Error(`${label}: frontmatter line is not 'key: value' , ${line.trim()}`);
     }
 
     const key = line.slice(0, separator).trim();
     if (key === '') {
-      throw new Error(`${label}: frontmatter line has an empty key — ${line.trim()}`);
+      throw new Error(`${label}: frontmatter line has an empty key , ${line.trim()}`);
     }
 
     data[key] = parseValue(line.slice(separator + 1));

@@ -5,7 +5,7 @@ import { UI_TEXT } from './ui-text';
 /**
  * Single-control EN/DE toggle: pressing anywhere on it flips the language.
  *
- * A plain <button> rather than role="switch" — a switch implies on/off, and
+ * A plain <button> rather than role="switch" , a switch implies on/off, and
  * neither language is meaningfully "off". The knob text is aria-hidden and the
  * button carries an explicit label, since an accessible name of just "EN"
  * would say nothing about what pressing does.

@@ -12,7 +12,7 @@ export interface Study {
   degree: string;
   institution: string;
   dates: string;
-  /** Raw Markdown body — the detail sentence. */
+  /** Raw Markdown body , the detail sentence. */
   body: string;
 }
 

@@ -15,7 +15,7 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
  *
  * The router's own scrollPositionRestoration is not enough here: 'top' sends
  * every navigation to the top, and 'enabled' restores only on popstate, while
- * the detail page's back arrow is a routerLink — a forward navigation, which
+ * the detail page's back arrow is a routerLink , a forward navigation, which
  * would still land at the top. Watching navigation events instead covers the
  * arrow and the browser's Back button through one code path.
  *
@@ -52,7 +52,7 @@ export class ScrollMemory {
   }
 
   /**
-   * Scrolls once the incoming route has rendered — at NavigationEnd the new
+   * Scrolls once the incoming route has rendered , at NavigationEnd the new
    * view is created but not yet laid out, so the target offset may still be
    * taller than the document.
    */

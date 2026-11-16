@@ -11,7 +11,7 @@ import { SHOWCASE } from './showcase/showcase.data';
 /*
  * The Downloads section hides itself while it has no entries, so its heading is
  * only in the page once downloads.data.ts is populated. Deriving it here keeps
- * these expectations correct in both states — adding the first download should
+ * these expectations correct in both states , adding the first download should
  * not fail an unrelated test.
  */
 function expectedHeadings(lang: 'en' | 'de'): string[] {

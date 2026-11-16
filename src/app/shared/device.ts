@@ -7,7 +7,7 @@
  * import time.
  */
 
-/** Pointers that can hover precisely — a mouse or trackpad, never touch. */
+/** Pointers that can hover precisely , a mouse or trackpad, never touch. */
 export const FINE_POINTER = '(hover: hover) and (pointer: fine)';
 
 /**
@@ -17,7 +17,7 @@ export const FINE_POINTER = '(hover: hover) and (pointer: fine)';
  */
 export const DESKTOP_WIDTH = '(min-width: 1101px)';
 
-/** The narrowest layout tier — the 600px breakpoint used across the stylesheets. */
+/** The narrowest layout tier , the 600px breakpoint used across the stylesheets. */
 export const PHONE = '(max-width: 600px)';
 
 export const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';

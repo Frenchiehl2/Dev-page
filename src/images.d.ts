@@ -8,7 +8,7 @@
  *   import banner from './banner.svg' with { loader: 'file' };
  *
  * Without the attribute the build fails with "No loader is configured for
- * .svg files" — loud, not silent. These declarations only supply the type.
+ * .svg files" , loud, not silent. These declarations only supply the type.
  */
 declare module '*.svg' {
   const url: string;

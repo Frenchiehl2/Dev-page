@@ -2,12 +2,12 @@ import { Localised, Sources, loadEntries } from './load-entries';
 import { optionalString, requireList, requireString } from './frontmatter';
 
 /**
- * A piece of work shown as a card and given its own detail page — a portfolio
+ * A piece of work shown as a card and given its own detail page , a portfolio
  * project or a commercial release. Both are loaded from a folder of Markdown
  * files under src/content with an identical set of frontmatter fields.
  */
 export interface WorkEntry {
-  /** URL segment for the detail route, e.g. /projects/vulkan-renderer — same in every language. */
+  /** URL segment for the detail route, e.g. /projects/vulkan-renderer , same in every language. */
   slug: string;
   title: string;
   /** Short blurb shown on the card. */
@@ -27,7 +27,7 @@ export interface WorkEntry {
    */
   bannerSrcset?: string;
   /**
-   * Where the work itself lives — a repository, a product page. Optional: an
+   * Where the work itself lives , a repository, a product page. Optional: an
    * entry with nothing to point at simply renders no link.
    */
   url?: string;
@@ -59,7 +59,7 @@ export function loadWorkEntries(
     role: requireString(fields, 'role', label),
     year: requireString(fields, 'year', label),
     body,
-    // From the folder's own barrel — one banner per entry, shared by both languages.
+    // From the folder's own barrel , one banner per entry, shared by both languages.
     banner: source.banner,
     // Composed here rather than in the template, so neither card nor detail
     // page builds the string itself. Widths match what the variants were

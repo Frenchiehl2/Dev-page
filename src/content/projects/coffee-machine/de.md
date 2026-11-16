@@ -8,7 +8,7 @@ url: https://github.com/Frenchiehl2/Coffie-Machine
 ---
 
 Die vorhandene Maschine war langsam und hatte keine Netzwerkverbindung: Kaffee hieß hingehen,
-Knopf drücken, warten. Geräte, die das lösen, kosten mehr als angemessen schien — also entstand
+Knopf drücken, warten. Geräte, die das lösen, kosten mehr als angemessen schien , also entstand
 diese hier.
 
 Kaffeemaschinen sind komplizierter, als man denkt. Das Ergebnis verlangte Embedded-Programmierung

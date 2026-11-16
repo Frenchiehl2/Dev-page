@@ -8,7 +8,7 @@ export interface Overview {
   location: string;
   focus: string;
   email: string;
-  /** Raw Markdown body — the intro paragraphs. */
+  /** Raw Markdown body , the intro paragraphs. */
   body: string;
 }
 
@@ -24,7 +24,7 @@ export const OVERVIEW: Record<Lang, Overview> = loadDocument(
 );
 
 /**
- * Portrait shown beside the masthead — the same image in both languages.
+ * Portrait shown beside the masthead , the same image in both languages.
  * Swap src/content/overview/portrait.svg for a real photograph; if the format
  * changes, update the import in that folder's index.ts.
  */

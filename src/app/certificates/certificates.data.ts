@@ -9,7 +9,7 @@ export interface Certificate {
   name: string;
   issuer: string;
   date: string;
-  /** Raw Markdown body — the detail sentence. */
+  /** Raw Markdown body , the detail sentence. */
   body: string;
 }
 

@@ -56,7 +56,7 @@ export const UI_TEXT: Record<Lang, UiText> = {
     downloads: 'Downloads',
     contact: 'Contact',
     contactIntro:
-      'Write a message below and press send — it opens in your own mail app, addressed to me.',
+      'Write a message below and press send, it opens in your own mail app, addressed to me.',
     subjectLabel: 'Subject',
     messageLabel: 'Message',
     sendMessage: 'Send message',
@@ -92,7 +92,7 @@ export const UI_TEXT: Record<Lang, UiText> = {
     downloads: 'Downloads',
     contact: 'Kontakt',
     contactIntro:
-      'Schreiben Sie unten eine Nachricht und klicken Sie auf Senden — sie öffnet sich in Ihrem eigenen E-Mail-Programm, an mich adressiert.',
+      'Schreiben Sie unten eine Nachricht und klicken Sie auf Senden, sie öffnet sich in Ihrem eigenen E-Mail-Programm, an mich adressiert.',
     subjectLabel: 'Betreff',
     messageLabel: 'Nachricht',
     sendMessage: 'Nachricht senden',

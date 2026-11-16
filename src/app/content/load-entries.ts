@@ -18,14 +18,14 @@ export type Localised<T> = Record<Lang, T[]>;
  * parse the frontmatter, hand the fields and body to a builder, and label any
  * error with the file it came from so a bad content file names itself.
  *
- * Both languages are parsed once at module load — the sources are small
+ * Both languages are parsed once at module load , the sources are small
  * strings, so this is cheaper than parsing lazily on every language switch.
  *
  * `kind` is the folder under src/content, used only for that error label.
  *
  * The builder also receives the whole source entry, so a section can read
- * extra per-folder fields its barrel exports — Projects reads `banner` this
- * way — without needing a second lookup table keyed by slug.
+ * extra per-folder fields its barrel exports , Projects reads `banner` this
+ * way , without needing a second lookup table keyed by slug.
  */
 export function loadEntries<T, E extends Sources>(
   sources: Record<string, E>,

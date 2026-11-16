@@ -8,7 +8,7 @@
   max-width: 1240px;
   margin: 0 auto;
   /* Extra top padding so content clears the language selector pinned in the
-     corner — the portrait now occupies that same top-right area. */
+     corner , the portrait now occupies that same top-right area. */
   padding: calc(var(--space-xl) + var(--space-md)) var(--space-xl) var(--space-xl);
 }
 
@@ -18,7 +18,7 @@
  *
  * It hangs off .page rather than the body because .page's box is the whole
  * document, and the vertical fade has to be document-relative to line up with
- * those bands — a fixed layer's mask would track the viewport edges instead.
+ * those bands , a fixed layer's mask would track the viewport edges instead.
  * .page is also rendered on every route, which is what makes this shared.
  */
 .page::after {

@@ -39,6 +39,6 @@
 
 /*
  * The bullet list is Markdown rendered via [innerHTML], so it cannot be styled
- * from here — scoped rules never reach injected content. Its typography lives
+ * from here , scoped rules never reach injected content. Its typography lives
  * in src/styles.css under .markdown-body--tight.
  */

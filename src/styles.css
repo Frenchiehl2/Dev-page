@@ -67,7 +67,7 @@
 /*
  * Dark only, by design: this palette is built on neon-against-near-black
  * contrast, which has no meaningful light counterpart. There is deliberately
- * no prefers-color-scheme branch — forcing light must not change the page.
+ * no prefers-color-scheme branch , forcing light must not change the page.
  */
 :root {
   /* Pure-neutral ground and layers: no hue, so the accents carry all colour. */
@@ -195,7 +195,7 @@ body {
  * masthead and a cyan one low down. position: fixed so it holds still while
  * the page scrolls, and so it is painted once rather than per scroll frame.
  *
- * z-index: -1 puts it above the body background and below all content — body
+ * z-index: -1 puts it above the body background and below all content , body
  * creates no stacking context, so content paints over it without needing a
  * z-index of its own.
  */
@@ -323,7 +323,7 @@ a {
  *
  * Responsive: as many 260px-minimum columns as fit, wrapping to new rows as
  * entries are added. auto-fit rather than auto-fill so empty column tracks
- * collapse — with one or two entries the cards fill the row instead of sitting
+ * collapse , with one or two entries the cards fill the row instead of sitting
  * narrow beside reserved empty space.
  */
 .card-grid {
@@ -373,7 +373,7 @@ a {
 }
 
 /*
- * Focus thickens the border layer to 2px, matching the outline it replaces —
+ * Focus thickens the border layer to 2px, matching the outline it replaces ,
  * a 1px edge would be a weaker focus indicator than the one that was there.
  * The inner notch shrinks by inset x (2 - sqrt2), which keeps the diagonal the
  * same width as the straight edges.

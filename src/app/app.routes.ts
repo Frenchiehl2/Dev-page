@@ -14,7 +14,7 @@ const entryTitle =
     const lang = inject(Language).current();
     const slug = route.paramMap.get('slug');
     const entry = COLLECTIONS[collection][lang].find((e) => e.slug === slug);
-    return entry ? `${entry.title} — ${SITE_NAME}` : UI_TEXT[lang].projectNotFound;
+    return entry ? `${entry.title} , ${SITE_NAME}` : UI_TEXT[lang].projectNotFound;
   };
 
 export const routes: Routes = [

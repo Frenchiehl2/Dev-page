@@ -57,6 +57,6 @@ function writeStored(lang: Lang): void {
   try {
     localStorage.setItem(STORAGE_KEY, lang);
   } catch {
-    // Storage unavailable — the choice simply won't persist.
+    // Storage unavailable , the choice simply won't persist.
   }
 }

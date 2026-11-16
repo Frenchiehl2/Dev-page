@@ -16,7 +16,7 @@
  * The frame is a gradient behind 2px of padding, with the image clipped 2px
  * inside it, so the colour reads as a border on every edge including the two
  * diagonals. A plain border cannot do that: clip-path cuts it away at the
- * corners. And the .notched recipe cannot be reused here either — it draws its
+ * corners. And the .notched recipe cannot be reused here either , it draws its
  * border on a ::before, which a replaced element like <img> never renders.
  *
  * Corners are cut on the opposite diagonal to the cards and tiles.

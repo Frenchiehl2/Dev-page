@@ -21,8 +21,8 @@ const OFFSET_PX = 10;
  *   <li class="tile" [appReveal]="$index + 1">
  *
  * The hidden state is applied from script rather than sitting in the
- * stylesheet, so if this never runs — JS disabled, no IntersectionObserver,
- * a phone, reduced motion — the page still renders fully visible instead of
+ * stylesheet, so if this never runs , JS disabled, no IntersectionObserver,
+ * a phone, reduced motion , the page still renders fully visible instead of
  * blank. See shouldAnimate().
  */
 @Directive({
@@ -97,7 +97,7 @@ export class Reveal implements OnInit, OnDestroy {
      * For an element already in view at load, IntersectionObserver delivers
      * its first notification in the same frame the observation starts. Adding
      * the hidden and visible classes within one style flush gives the
-     * transition no earlier value to start from, so the element snaps in —
+     * transition no earlier value to start from, so the element snaps in ,
      * which is why above-the-fold content used to appear instantly while the
      * rest of the page faded. A frame boundary separates the two states;
      * a forced reflow is not enough when no paint has happened yet.
@@ -168,7 +168,7 @@ export class Reveal implements OnInit, OnDestroy {
 }
 
 /**
- * True when the element is arriving over the top edge — its centre sits above
+ * True when the element is arriving over the top edge , its centre sits above
  * the viewport's. Falls back to false (rise) when the browser or a test stub
  * supplies no geometry.
  */

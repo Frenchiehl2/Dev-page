@@ -8,15 +8,15 @@ const DESKTOP_CROSSHAIR = `${FINE_POINTER} and ${DESKTOP_WIDTH}`;
  * Crosshair reticle that follows the mouse: full-width and full-height rules
  * meeting under the pointer, with corner brackets marking the intersection.
  *
- * Deliberately part of the backdrop rather than an overlay — the host sits at
+ * Deliberately part of the backdrop rather than an overlay , the host sits at
  * z-index -1, so it paints behind every piece of content (see crosshair.css).
  * The native cursor is left alone on top of it, so pointer, text and resize
  * shapes still read normally and nothing is lost if this never runs.
  *
  * Desktop only, tested by pointer capability and viewport width rather than by
  * user agent. A phone or tablet reports no fine pointer and gets nothing; the
- * width floor then covers the tablet that does report one — because a mouse or
- * trackpad is attached, or because it was asked for the desktop site — where a
+ * width floor then covers the tablet that does report one , because a mouse or
+ * trackpad is attached, or because it was asked for the desktop site , where a
  * per-frame loop over a full-viewport layer is the last thing the device needs.
  *
  * The app is zoneless, so the mousemove listener triggers no change detection.

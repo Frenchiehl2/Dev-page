@@ -3,7 +3,7 @@ import { Lang } from '../shared/language';
 /** One embedded video in the Showcase section. */
 export interface ShowcaseVideo {
   /**
-   * YouTube video id — the v= parameter of a watch URL, 11 characters.
+   * YouTube video id , the v= parameter of a watch URL, 11 characters.
    * From https://www.youtube.com/watch?v=dQw4w9WgXcQ the id is 'dQw4w9WgXcQ'.
    */
   id: string;
